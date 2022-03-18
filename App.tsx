@@ -1,20 +1,15 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import Login from "./src/screens/login";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "./src/screens/home";
+import Routes from "./src/routes";
+import { AuthProvider } from "./src/contexts/auth";
 
-const Stack = createNativeStackNavigator();
-export default function App() {
+const App: React.FC = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Login"
-        screenOptions={{ headerShown: false }}
-      >
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </NavigationContainer>
   );
-}
+};
+export default App;
