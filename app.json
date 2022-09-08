@@ -1,11 +1,10 @@
 {
   "expo": {
-    "name": "tcc-app",
-    "slug": "tcc-app",
+    "name": "tccprojeto",
+    "slug": "tccprojeto",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
