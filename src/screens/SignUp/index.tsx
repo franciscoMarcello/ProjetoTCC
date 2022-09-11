@@ -8,56 +8,84 @@ import {
   ActivityIndicator
 
 } from "react-native";
+
+
+
+
 import { StackParamsList } from "../../routes/auth.routes";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
 import { useNavigation } from "@react-navigation/native";
 
-const SignIn: React.FC = () => {
-  const {  signIn,loadingAuth,error } = useContext(AuthContext);
+const SignUp: React.FC = () => {
+  const {  signUp,loadingAuth,error } = useContext(AuthContext);
   const navigation = useNavigation<NativeStackNavigationProp<StackParamsList>>()
 
-  async function handleAcess() {
-    await signIn({ email, password });
-    
+  async function handleRegistre() {
+    await signUp({ email, password,phone,name });
+ 
   }
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [ConfirmPassword, setConfirmPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
 
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Cadastro</Text>
 
       <TextInput
+        style={styles.input}
+        onChangeText={setName}
+        value={name}
+        placeholder="Nome"
+        placeholderTextColor={"white"}
+      />
+       <TextInput
         style={styles.input}
         onChangeText={setEmail}
         value={email}
         placeholder="Email"
         placeholderTextColor={"white"}
+        autoCapitalize='none'
         keyboardType="email-address"
-        autoCapitalize="none"
       />
-      <TextInput
+       <TextInput
+        style={styles.input}
+        onChangeText={setPhone}
+        value={phone}
+        placeholder="Telefone"
+        placeholderTextColor={"white"}
+      />
+         <TextInput
         style={styles.input}
         onChangeText={setPassword}
         value={password}
         placeholder="Senha"
+        placeholderTextColor={"white"}
+        secureTextEntry
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={setConfirmPassword}
+        value={ConfirmPassword}
+        placeholder="Confirmação de senha"
         secureTextEntry
         placeholderTextColor={"white"}
+       
       />
-      <TouchableOpacity style={styles.button} onPress={handleAcess}>
+      <TouchableOpacity style={styles.button} onPress={handleRegistre}>
         {loadingAuth ? (
           <ActivityIndicator size={25} color="#fff"/>
-        ) : (<Text style={styles.text}> Entrar</Text>)}
+        ) : (<Text style={styles.text}> Cadastrar</Text>)}
         
       </TouchableOpacity>
       <TouchableOpacity onPress={
-        () => navigation.navigate('SignUp')
-      }>
-        <Text style={styles.text}> Criar conta</Text>
+        () => navigation.navigate('SignIn')}>
+        <Text style={styles.text}> Já póssui conta? Logar</Text>
       </TouchableOpacity>
 
       <View style={styles.viewError}>
@@ -110,4 +138,4 @@ const styles = StyleSheet.create({
     marginTop:10,
   }
 });
-export default SignIn;
+export default SignUp;
