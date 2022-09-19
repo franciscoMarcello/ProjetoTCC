@@ -23,7 +23,12 @@ const SignUp: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParamsList>>()
 
   async function handleRegistre() {
-    await signUp({ email, password,phone,name });
+    if(password != ConfirmPassword){
+    
+    }else{
+      await signUp({ email, password,phone,name });
+    }
+ 
  
   }
   const [email, setEmail] = useState('');
@@ -31,6 +36,7 @@ const SignUp: React.FC = () => {
   const [ConfirmPassword, setConfirmPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
+  
 
   return (
     <View style={styles.container}>
