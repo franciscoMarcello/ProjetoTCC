@@ -15,11 +15,17 @@ type SignUpData = {
   name:string;
   phone:string
 };
+type UserProps = {
+  id: string;
+  name: string;
+  email: string;
+  token: string;
+};
 
 
 interface AuthContextData {
-  signed: boolean;
-  user: object | null;
+  isAuthenticated: boolean;
+  user: UserProps ;
   signIn: (credentials: SignInData) => Promise<void>;
   Logout(): void;
   loadingAuth:boolean;
@@ -31,10 +37,16 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<object | null>(null);
+  const [user, setUser] = useState<UserProps>({
+    id: "",
+    name: "",
+    token: "",
+    email: ""
+  });
   const [loadingAuth, setLoadingAuth] = useState(false)
   const [loading,setLoading] = useState(true)
   const [error, setError] =useState('')
+  const isAuthenticated = !!user.id
   const navigation = useNavigation<NativeStackNavigationProp<StackParamsList>>()
 
   useEffect(() => {
@@ -44,6 +56,9 @@ export const AuthProvider: React.FC = ({ children }) => {
 
       if (storagedToken && storagedUser) {
         setUser(JSON.parse(storagedUser));
+        api.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${storagedToken}`;
       }
       setLoading(false)
     }
@@ -69,11 +84,11 @@ export const AuthProvider: React.FC = ({ children }) => {
         token
        });
      await AsyncStorage.setItem("@App:user", JSON.stringify(data));
-     await AsyncStorage.setItem("@App:token", response.data.token);
+     await AsyncStorage.setItem("@App:token", token);
 
     api.defaults.headers.common[
        "Authorization"
-     ] = `Bearer ${response.data.token}`;
+     ] = `Bearer ${token}`;
      setError('')
     setLoadingAuth(false)
     }catch(err:any){
@@ -106,13 +121,18 @@ export const AuthProvider: React.FC = ({ children }) => {
     
   }
 
-  function Logout() {
-    AsyncStorage.clear().then(() => {
-      setUser(null);
-    });
-  }
+  async function Logout() {
+    await AsyncStorage.clear().then(() => {
+      setUser({
+        id: "",
+        name: "",
+        token: "",
+        email: "",
+      });
+  })
+}
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, signIn, Logout,loadingAuth,loading,error,signUp }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, signIn, Logout,loadingAuth,loading,error,signUp }}>
       {children}
     </AuthContext.Provider>
   );

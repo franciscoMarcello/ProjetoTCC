@@ -4,7 +4,7 @@ import AuthContext from "../contexts/auth";
 import AuthRoutes from "./auth.routes";
 import { ActivityIndicator, View } from "react-native";
 const Routes: React.FC = () => {
-  const { signed, loading } = useContext(AuthContext);
+  const {isAuthenticated, loading } = useContext(AuthContext);
   if(loading){
     return(
       <View
@@ -19,7 +19,7 @@ const Routes: React.FC = () => {
       </View>
     )
   }
-  return signed ? <AppRoutes /> : <AuthRoutes />;
+  return isAuthenticated ? <AppRoutes /> : <AuthRoutes />;
   
 };
 export default Routes;
