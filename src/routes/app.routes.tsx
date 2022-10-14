@@ -5,6 +5,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import User from "../screens/User";
 import Endereco from "../screens/User/Endereco";
+import Details from "../screens/Chamados/Details";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -18,6 +19,11 @@ function Mystacks() {
     >
       <Stack.Screen name="Arear" component={User} />
       <Stack.Screen name="Endereço" component={Endereco} />
+      <Stack.Screen
+        name="Details"
+        options={{ title: "Detalhes do chamado" }}
+        component={Details}
+      />
     </Stack.Navigator>
   );
 }
@@ -30,10 +36,14 @@ const AppRoutes: React.FC = () => (
 
         width: 240,
       },
-      drawerActiveBackgroundColor: "#9400d3",
+      drawerActiveBackgroundColor: "#580ef6",
       drawerLabelStyle: {
         color: "white",
       },
+      headerStyle: {
+        backgroundColor: "#3d3a50",
+      },
+      headerTintColor: "white",
     }}
   >
     <Drawer.Screen name="Home" component={Home} />

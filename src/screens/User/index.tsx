@@ -1,5 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Button, Text } from "native-base";
+import {
+  Box,
+  Button,
+  Center,
+  Container,
+  FlatList,
+  Heading,
+  HStack,
+  Spacer,
+  Text,
+  VStack,
+} from "native-base";
 import {
   View,
   TouchableOpacity,
@@ -7,6 +18,8 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
+import ptBR from "date-fns/locale/pt-BR";
+import format from "date-fns/format";
 
 type DadosProps = {
   id: string;
@@ -14,14 +27,15 @@ type DadosProps = {
   email: string;
   phone: number;
 };
-type ChamadosProps = {
-  map(arg0: (item: any) => JSX.Element): React.ReactNode;
+export type ChamadosProps = {
   id: string;
   title: string;
   description: string;
   status: string;
   tecninc: string;
   category: string;
+  created_at: Date;
+  updated_at: Date;
 };
 type EnderecoProps = {
   map(arg0: (item: any) => JSX.Element): React.ReactNode;
@@ -35,19 +49,18 @@ type EnderecoProps = {
 
 import { Avatar } from "native-base";
 import api from "../../service/auth";
-import { StackParamsList } from "../../routes/auth.routes";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
 import { useNavigation } from "@react-navigation/native";
+import Chamado from "../Chamados";
 
 const User: React.FC = () => {
   const { user } = useContext(AuthContext);
   const [dados, setDados] = useState<DadosProps>([]);
   const [Enderecos, setEnderecos] = useState<EnderecoProps>([]);
   const [Chamados, setChamados] = useState<ChamadosProps>([]);
-  const navigation =
-    useNavigation<NativeStackNavigationProp<StackParamsList>>();
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     async function me() {
@@ -59,12 +72,17 @@ const User: React.FC = () => {
       setDados(response.data);
       setEnderecos(response.data.Endereco);
       setChamados(response.data.Chamado);
+      // let dataformat = format(Chamados.created_at, "dd/MM/yy", {
+      //   locale: ptBR,
+      // });
+
+      // console.log(dataformat);
     }
     me();
-  }, []);
+  }, [Chamados]);
 
   return (
-    <View style={styles.container}>
+    <Box backgroundColor="#1a1c22">
       <StatusBar style="dark" />
 
       <Avatar
@@ -75,7 +93,7 @@ const User: React.FC = () => {
       >
         AJ
       </Avatar>
-      <Text style={styles.text}>Area User</Text>
+
       <Text style={styles.text}>{user.name}</Text>
       <Text style={styles.text}>{user.email}</Text>
       <Text style={styles.text}>{dados.phone}</Text>
@@ -88,19 +106,73 @@ const User: React.FC = () => {
         </View>
       ))}
 
-      <Button onPress={() => navigation.navigate("Endereço")}>
-        <Text>Adicionar endereço</Text>
+      <Button
+        backgroundColor="#580ef6"
+        onPress={() => navigation.navigate("Endereço")}
+      >
+        <Text color="white">Adicionar endereço</Text>
       </Button>
-
-      {Chamados.map((item) => (
-        <View key={item.id}>
-          <Text style={styles.text}>{item.id}</Text>
-          <Text style={styles.text}>{item.title}</Text>
-          <Text style={styles.text}>{item.description}</Text>
-          <Text style={styles.text}>{item.status}</Text>
-        </View>
-      ))}
-    </View>
+      <Heading fontSize="xl" p="4" pb="3" color="white">
+        Meus chamados
+      </Heading>
+      <FlatList
+        data={Chamados}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("Details", { ChamadoId: item.id })
+            }
+          >
+            <Box
+              borderBottomWidth="3"
+              _dark={{
+                borderColor: "muted.30",
+              }}
+              borderColor="muted.800"
+              pl={["2", "4"]}
+              pr={["0", "2"]}
+              py="2"
+              size="32"
+              width="sm"
+            >
+              <HStack space={[2, 3]} justifyContent="space-between">
+                <VStack>
+                  <Text
+                    _dark={{
+                      color: "white",
+                    }}
+                    color="white"
+                    bold
+                  >
+                    {item.id}
+                  </Text>
+                  <Text
+                    color="white"
+                    _dark={{
+                      color: "white",
+                    }}
+                  >
+                    {item.description}
+                  </Text>
+                </VStack>
+                <Spacer />
+                <Text
+                  fontSize="xs"
+                  _dark={{
+                    color: "white",
+                  }}
+                  color="white"
+                  alignSelf="flex-start"
+                >
+                  {item.created_at}
+                </Text>
+              </HStack>
+            </Box>
+          </TouchableOpacity>
+        )}
+        keyExtractor={(item) => item.id}
+      />
+    </Box>
   );
 };
 const styles = StyleSheet.create({

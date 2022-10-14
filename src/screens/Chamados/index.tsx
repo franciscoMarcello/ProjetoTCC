@@ -1,16 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  StyleSheet,
-  ActivityIndicator,
-} from "react-native";
+import { View, StyleSheet } from "react-native";
 
-import { Input, Button, Box, Select } from "native-base";
+import { Input, Button, Box, Select, TextArea, Text } from "native-base";
 import api from "../../service/auth";
-import { StackParamsList } from "../../routes/auth.routes";
+
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
@@ -32,17 +25,22 @@ const Chamado: React.FC = () => {
     }
   }
   const { user } = useContext(AuthContext);
-  const navigation =
-    useNavigation<NativeStackNavigationProp<StackParamsList>>();
   const [error, setError] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [cateegory, setCategory] = useState("");
 
   return (
-    <View style={styles.container}>
+    <Box
+      backgroundColor="#3d3a50"
+      alignItems="center"
+      paddingTop="40"
+      size="full"
+    >
       <StatusBar style="dark" />
-      <Text>Novo chamado</Text>
+      <Text bold color="white" fontSize="2xl">
+        Novo Chamado
+      </Text>
       <Box
         bg={{
           linearGradient: {
@@ -64,24 +62,31 @@ const Chamado: React.FC = () => {
           size="xl"
           onChangeText={setTitle}
           value={title}
-          placeholder="titulo do chamado"
-          color={"white"}
+          placeholder="Titulo do chamado"
+          color="gray.300"
+          marginBottom="3"
         />
-        <Input
+        <TextArea
           size="xl"
           onChangeText={setDescription}
           value={description}
-          placeholder="descrição"
-          color={"white"}
+          placeholder="Descrição"
+          color="gray.300"
+          marginBottom="3"
         />
         <Select
+          marginBottom="3"
           selectedValue={cateegory}
           minWidth="300"
-          accessibilityLabel="Choose Service"
-          placeholder="Choose Service"
+          accessibilityLabel="Selecione a categoria"
+          placeholder="Selecione a categoria"
+          color="gray.300"
+          size="3"
           _selectedItem={{
             bg: "teal.600",
-            size: 20,
+            size: 35,
+            width: "100%",
+            color: "black",
           }}
           mt={1}
           onValueChange={(itemValue) => setCategory(itemValue)}
@@ -92,32 +97,15 @@ const Chamado: React.FC = () => {
           <Select.Item label="UI Designing" value="ui" />
           <Select.Item label="Backend Development" value="backend" />
         </Select>
-        <Input
-          size="xl"
-          onChangeText={setCategory}
-          value={cateegory}
-          placeholder="categoria"
-          color={"white"}
-        />
       </Box>
 
       <View>
-        <Button onPress={AddChamado}>Adicionar chamado</Button>
+        <Button backgroundColor="#580ef6" onPress={AddChamado}>
+          Adicionar chamado
+        </Button>
       </View>
-    </View>
+    </Box>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#08090A",
-    color: "#ffff",
-  },
-  text: {
-    color: "#fff",
-  },
-});
 
 export default Chamado;
