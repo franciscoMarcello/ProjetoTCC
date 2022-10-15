@@ -32,7 +32,7 @@ const Chamado: React.FC = () => {
 
   return (
     <Box
-      backgroundColor="#3d3a50"
+      backgroundColor="#1a1c22"
       alignItems="center"
       paddingTop="40"
       size="full"
@@ -91,11 +91,11 @@ const Chamado: React.FC = () => {
           mt={1}
           onValueChange={(itemValue) => setCategory(itemValue)}
         >
-          <Select.Item label="UX Research" value="ux" />
-          <Select.Item label="Web Development" value="web" />
-          <Select.Item label="Cross Platform Development" value="cross" />
-          <Select.Item label="UI Designing" value="ui" />
-          <Select.Item label="Backend Development" value="backend" />
+          <Select.Item label="Sistemas" value="Sistemas" />
+          <Select.Item label="Desenvolvimento" value="Desenvolvimento" />
+          <Select.Item label="Suporte" value="Suporte" />
+          <Select.Item label="Consultoria" value="Consultoria" />
+          <Select.Item label="Design" value="Design" />
         </Select>
       </Box>
 

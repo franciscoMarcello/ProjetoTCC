@@ -5,6 +5,9 @@ export declare global {
         ChamadoId: string;
       };
       Endereço: undefined;
+      SignIn: undefined;
+      SignUp: undefined;
+      Chamados: undefined;
     }
   }
 }

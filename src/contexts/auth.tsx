@@ -2,7 +2,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import React, { createContext, useEffect, useState } from "react";
 import api from "../service/auth";
-import { StackParamsList } from "../routes/auth.routes";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type SignInData = {
@@ -12,27 +11,26 @@ type SignInData = {
 type SignUpData = {
   email: string;
   password: string;
-  name:string;
-  phone:string
+  name: string;
+  phone: string;
 };
 type UserProps = {
   id: string;
   name: string;
   email: string;
   token: string;
+  picture: string;
 };
-
 
 interface AuthContextData {
   isAuthenticated: boolean;
-  user: UserProps ;
+  user: UserProps;
   signIn: (credentials: SignInData) => Promise<void>;
   Logout(): void;
-  loadingAuth:boolean;
-  loading:boolean
-  error:string
-  signUp:(credentials:SignUpData) => Promise<void>
-  
+  loadingAuth: boolean;
+  loading: boolean;
+  error: string;
+  signUp: (credentials: SignUpData) => Promise<void>;
 }
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
@@ -41,13 +39,14 @@ export const AuthProvider: React.FC = ({ children }) => {
     id: "",
     name: "",
     token: "",
-    email: ""
+    email: "",
+    picture: "",
   });
-  const [loadingAuth, setLoadingAuth] = useState(false)
-  const [loading,setLoading] = useState(true)
-  const [error, setError] =useState('')
-  const isAuthenticated = !!user.id
-  const navigation = useNavigation<NativeStackNavigationProp<StackParamsList>>()
+  const [loadingAuth, setLoadingAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const isAuthenticated = !!user.id;
+  const navigation = useNavigation();
 
   useEffect(() => {
     async function loadStoragedData() {
@@ -60,65 +59,58 @@ export const AuthProvider: React.FC = ({ children }) => {
           "Authorization"
         ] = `Bearer ${storagedToken}`;
       }
-      setLoading(false)
+      setLoading(false);
     }
     loadStoragedData();
   }, []);
   async function signIn({ email, password }: SignInData) {
-    setLoadingAuth(true)
-    try{
+    setLoadingAuth(true);
+    try {
       const response = await api.post("/auth", {
         email: email,
         password: password,
       });
-      
-      const {id,name,token} = response.data
+
+      const { id, name, token, picture } = response.data;
 
       const data = {
-        ...response.data
-      }
-       setUser({
+        ...response.data,
+      };
+      setUser({
         id,
         name,
         email,
-        token
-       });
-     await AsyncStorage.setItem("@App:user", JSON.stringify(data));
-     await AsyncStorage.setItem("@App:token", token);
+        token,
+        picture,
+      });
+      await AsyncStorage.setItem("@App:user", JSON.stringify(data));
+      await AsyncStorage.setItem("@App:token", token);
 
-    api.defaults.headers.common[
-       "Authorization"
-     ] = `Bearer ${token}`;
-     setError('')
-    setLoadingAuth(false)
-    }catch(err:any){
-      setLoadingAuth(false)
-     setError(err.response.data.message )
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      setError("");
+      setLoadingAuth(false);
+    } catch (err: any) {
+      setLoadingAuth(false);
+      setError(err.response.data.message);
     }
-   
-    
   }
-  async function signUp({ email, password, name,phone }: SignUpData) {
-    setLoadingAuth(true)
-    try{
+  async function signUp({ email, password, name, phone }: SignUpData) {
+    setLoadingAuth(true);
+    try {
       const response = await api.post("/customer", {
         email: email,
         password: password,
-        name:name,
-        phone:phone
+        name: name,
+        phone: phone,
       });
-      
-     
-        
-    setLoadingAuth(false)
-    setError('')
-    navigation.navigate('SignIn')
-    }catch(err:any){
-      setLoadingAuth(false)
-     setError(err.response.data.message )
+
+      setLoadingAuth(false);
+      setError("");
+      navigation.navigate("SignIn");
+    } catch (err: any) {
+      setLoadingAuth(false);
+      setError(err.response.data.message);
     }
-   
-    
   }
 
   async function Logout() {
@@ -128,11 +120,23 @@ export const AuthProvider: React.FC = ({ children }) => {
         name: "",
         token: "",
         email: "",
+        picture: "",
       });
-  })
-}
+    });
+  }
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, signIn, Logout,loadingAuth,loading,error,signUp }}>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        user,
+        signIn,
+        Logout,
+        loadingAuth,
+        loading,
+        error,
+        signUp,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -11,13 +11,7 @@ import {
   Text,
   VStack,
 } from "native-base";
-import {
-  View,
-  TouchableOpacity,
-  TextInput,
-  StyleSheet,
-  ActivityIndicator,
-} from "react-native";
+
 import ptBR from "date-fns/locale/pt-BR";
 import format from "date-fns/format";
 
@@ -51,17 +45,18 @@ import { Avatar } from "native-base";
 import api from "../../service/auth";
 import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
-import { useNavigation } from "@react-navigation/native";
-import Chamado from "../Chamados";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native";
 
 const User: React.FC = () => {
   const { user } = useContext(AuthContext);
-  const [dados, setDados] = useState<DadosProps>([]);
-  const [Enderecos, setEnderecos] = useState<EnderecoProps>([]);
-  const [Chamados, setChamados] = useState<ChamadosProps>([]);
+  const [dados, setDados] = useState<DadosProps[]>([]);
+  const [Enderecos, setEnderecos] = useState<EnderecoProps[]>([]);
+  const [Chamados, setChamados] = useState<ChamadosProps[]>([]);
+  const [picture, setPicture] = useState(user.picture);
 
   const navigation = useNavigation();
-
+  const isFocused = useIsFocused();
   useEffect(() => {
     async function me() {
       const response = await api.get("/customer/me", {
@@ -72,6 +67,7 @@ const User: React.FC = () => {
       setDados(response.data);
       setEnderecos(response.data.Endereco);
       setChamados(response.data.Chamado);
+
       // let dataformat = format(Chamados.created_at, "dd/MM/yy", {
       //   locale: ptBR,
       // });
@@ -79,113 +75,134 @@ const User: React.FC = () => {
       // console.log(dataformat);
     }
     me();
-  }, [Chamados]);
+  }, [isFocused]);
 
   return (
-    <Box backgroundColor="#1a1c22">
+    <Box backgroundColor="#1a1c22" flex="1">
       <StatusBar style="dark" />
-
-      <Avatar
-        bg="green.500"
-        source={{
-          uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-        }}
-      >
-        AJ
-      </Avatar>
-
-      <Text style={styles.text}>{user.name}</Text>
-      <Text style={styles.text}>{user.email}</Text>
-      <Text style={styles.text}>{dados.phone}</Text>
+      <Box padding="3" alignItems="center">
+        <Avatar
+          padding="20"
+          source={{
+            uri: picture,
+          }}
+        >
+          AJ
+        </Avatar>
+      </Box>
+      <Box alignItems="center">
+        <Heading fontSize="xl" pl="3" pb="1" color="white">
+          {user.name}
+        </Heading>
+        <Text fontSize="xl" color="white" pl="2">
+          {user.email}
+        </Text>
+        <Text fontSize="xl" color="white" pb="1" pl="2">
+          {dados.phone}
+        </Text>
+      </Box>
       {Enderecos.map((item) => (
-        <View key={item.id}>
-          <Text style={styles.text}>{item.street}</Text>
-          <Text style={styles.text}>{item.city}</Text>
-          <Text style={styles.text}>{item.cep}</Text>
-          <Text style={styles.text}>{item.complement}</Text>
-        </View>
+        <Box key={item.id}>
+          <Text>{item.street}</Text>
+          <Text>{item.city}</Text>
+          <Text>{item.cep}</Text>
+          <Text>{item.complement}</Text>
+        </Box>
       ))}
-
-      <Button
-        backgroundColor="#580ef6"
-        onPress={() => navigation.navigate("Endereço")}
-      >
-        <Text color="white">Adicionar endereço</Text>
-      </Button>
+      <Box alignItems="center">
+        <Button
+          backgroundColor="#580ef6"
+          onPress={() => navigation.navigate("Endereço")}
+        >
+          <Text color="white" fontSize="md">
+            Adicionar endereço
+          </Text>
+        </Button>
+      </Box>
       <Heading fontSize="xl" p="4" pb="3" color="white">
         Meus chamados
       </Heading>
-      <FlatList
-        data={Chamados}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("Details", { ChamadoId: item.id })
-            }
-          >
-            <Box
-              borderBottomWidth="3"
-              _dark={{
-                borderColor: "muted.30",
-              }}
-              borderColor="muted.800"
-              pl={["2", "4"]}
-              pr={["0", "2"]}
-              py="2"
-              size="32"
-              width="sm"
+      {Chamados.length ? (
+        <FlatList
+          data={Chamados}
+          renderItem={({ item }) => (
+            <Button
+              bg="#1a1c22"
+              onPress={() =>
+                navigation.navigate("Details", { ChamadoId: item.id })
+              }
             >
-              <HStack space={[2, 3]} justifyContent="space-between">
-                <VStack>
+              <Box
+                bg="#1a1c22"
+                borderBottomWidth="3"
+                _dark={{
+                  borderColor: "gray.700",
+                }}
+                borderColor="gray.700"
+                pl={["2", "4"]}
+                pr={["0", "2"]}
+                py="2"
+                size="20"
+                width="sm"
+              >
+                <HStack space={[2, 3]} justifyContent="space-between">
+                  <VStack>
+                    <Text
+                      _dark={{
+                        color: "white",
+                      }}
+                      color="white"
+                      bold
+                      fontSize="xl"
+                    >
+                      {item.title}
+                    </Text>
+                    <Text
+                      color="white"
+                      _dark={{
+                        color: "white",
+                      }}
+                      fontSize="md"
+                    >
+                      {item.description}
+                    </Text>
+                  </VStack>
+                  <Spacer />
                   <Text
+                    fontSize="xs"
                     _dark={{
                       color: "white",
                     }}
                     color="white"
-                    bold
+                    alignSelf="flex-start"
                   >
-                    {item.id}
+                    {item.created_at}
                   </Text>
-                  <Text
-                    color="white"
-                    _dark={{
-                      color: "white",
-                    }}
-                  >
-                    {item.description}
-                  </Text>
-                </VStack>
-                <Spacer />
-                <Text
-                  fontSize="xs"
-                  _dark={{
-                    color: "white",
-                  }}
-                  color="white"
-                  alignSelf="flex-start"
-                >
-                  {item.created_at}
-                </Text>
-              </HStack>
-            </Box>
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item) => item.id}
-      />
+                </HStack>
+              </Box>
+            </Button>
+          )}
+          keyExtractor={(item) => item.id}
+        />
+      ) : (
+        <Box justifyContent="center" alignItems="center" pt="20">
+          <Text color="white" fontSize="lg">
+            Voce ainda não possui chamados
+          </Text>
+          <Box pt="2">
+            <Button
+              backgroundColor="#580ef6"
+              onPress={() => navigation.navigate("Chamados")}
+            >
+              <Text color="white" fontSize="md">
+                Adicionar chamado
+              </Text>
+            </Button>
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#08090A",
-    color: "#ffff",
-  },
-  text: {
-    color: "#fff",
-  },
-});
 
 export default User;

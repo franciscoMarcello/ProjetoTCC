@@ -10,7 +10,7 @@ import {
 
 import { Input, Button } from "native-base";
 import api from "../../service/auth";
-import { StackParamsList } from "../../routes/auth.routes";
+
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
@@ -33,8 +33,7 @@ const Endereco: React.FC = () => {
     }
   }
   const { user } = useContext(AuthContext);
-  const navigation =
-    useNavigation<NativeStackNavigationProp<StackParamsList>>();
+
   const [city, setCity] = useState("");
   const [street, setStreet] = useState("");
   const [cep, setCep] = useState("");
