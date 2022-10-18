@@ -4,22 +4,21 @@ import AuthContext from "../contexts/auth";
 import AuthRoutes from "./auth.routes";
 import { ActivityIndicator, View } from "react-native";
 const Routes: React.FC = () => {
-  const {isAuthenticated, loading } = useContext(AuthContext);
-  if(loading){
-    return(
+  const { isAuthenticated, loading } = useContext(AuthContext);
+  if (loading) {
+    return (
       <View
-      style={{
-        flex:1,
-        backgroundColor:'#080705',
-        justifyContent:'center',
-        alignItems:'center'
-      }}
+        style={{
+          flex: 1,
+          backgroundColor: "#080705",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        <ActivityIndicator size={60} color="#da2c38"/>
+        <ActivityIndicator size={60} color="#580ef6" />
       </View>
-    )
+    );
   }
   return isAuthenticated ? <AppRoutes /> : <AuthRoutes />;
-  
 };
 export default Routes;

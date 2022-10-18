@@ -2,7 +2,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import React, { createContext, useEffect, useState } from "react";
 import api from "../service/auth";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type SignInData = {
   email: string;
@@ -15,6 +14,7 @@ type SignUpData = {
   phone: string;
 };
 type UserProps = {
+  tecnic: boolean;
   id: string;
   name: string;
   email: string;
@@ -41,6 +41,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     token: "",
     email: "",
     picture: "",
+    tecnic: false,
   });
   const [loadingAuth, setLoadingAuth] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -71,7 +72,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         password: password,
       });
 
-      const { id, name, token, picture } = response.data;
+      const { id, name, token, picture, tecnic } = response.data;
 
       const data = {
         ...response.data,
@@ -82,6 +83,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         email,
         token,
         picture,
+        tecnic,
       });
       await AsyncStorage.setItem("@App:user", JSON.stringify(data));
       await AsyncStorage.setItem("@App:token", token);
@@ -121,6 +123,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         token: "",
         email: "",
         picture: "",
+        tecnic: false,
       });
     });
   }

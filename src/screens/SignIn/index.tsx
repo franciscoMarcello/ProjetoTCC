@@ -1,113 +1,101 @@
 import React, { useState, useContext } from "react";
+import { ActivityIndicator } from "react-native";
+import { Entypo } from "@expo/vector-icons";
 import {
-  View,
+  Input,
+  Box,
+  Button,
   Text,
-  TouchableOpacity,
-  TextInput,
-  StyleSheet,
-  ActivityIndicator
-
-} from "react-native";
-import { StackParamsList } from "../../routes/auth.routes";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+  Center,
+  Heading,
+  FormControl,
+  Icon,
+  Image,
+} from "native-base";
 import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
 import { useNavigation } from "@react-navigation/native";
 
 const SignIn: React.FC = () => {
-  const {  signIn,loadingAuth,error } = useContext(AuthContext);
-  const navigation = useNavigation<NativeStackNavigationProp<StackParamsList>>()
+  const { signIn, loadingAuth, error } = useContext(AuthContext);
+  const navigation = useNavigation();
 
   async function handleAcess() {
     await signIn({ email, password });
-    
   }
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
-    <View style={styles.container}>
+    <Box flex="1" backgroundColor="#1a1c22" p={10} justifyContent="center">
       <StatusBar style="light" />
-      <Text style={styles.title}>Login</Text>
+      <Box alignItems="center" mb="5">
+        <Image
+          source={require("../../assets/images/logo.png_300.png")}
+          alt="logo"
+          size={200}
+          resizeMode="contain"
+          rounded={100}
+        />
+      </Box>
+      <Heading pb={3} color="white">
+        Login
+      </Heading>
 
-      <TextInput
-        style={styles.input}
-        onChangeText={setEmail}
-        value={email}
-        placeholder="Email"
-        placeholderTextColor={"white"}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setPassword}
-        value={password}
-        placeholder="Senha"
-        secureTextEntry
-        placeholderTextColor={"white"}
-      />
-      <TouchableOpacity style={styles.button} onPress={handleAcess}>
+      <FormControl>
+        <FormControl.Label>Email</FormControl.Label>
+        <Input
+          onChangeText={setEmail}
+          value={email}
+          placeholder="placeholder@gmail.com"
+          placeholderTextColor={"gray.500"}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          color={"gray.100"}
+          InputLeftElement={
+            <Icon
+              as={<Entypo name="email" />}
+              size={5}
+              color="gray.500"
+              ml={2}
+            />
+          }
+        />
+      </FormControl>
+      <FormControl>
+        <FormControl.Label>Senha</FormControl.Label>
+        <Input
+          onChangeText={setPassword}
+          value={password}
+          placeholder="*********"
+          secureTextEntry
+          placeholderTextColor={"gray.500"}
+          color={"gray.100"}
+          autoCapitalize="none"
+          InputLeftElement={
+            <Icon
+              as={<Entypo name="lock" />}
+              size={5}
+              color="gray.500"
+              ml={2}
+            />
+          }
+        />
+      </FormControl>
+      <Button mb="3" mt="3" bg="#580ef6" onPress={handleAcess}>
         {loadingAuth ? (
-          <ActivityIndicator size={25} color="#fff"/>
-        ) : (<Text style={styles.text}> Entrar</Text>)}
-        
-      </TouchableOpacity>
-      <TouchableOpacity onPress={
-        () => navigation.navigate('SignUp')
-      }>
-        <Text style={styles.text}> Criar conta</Text>
-      </TouchableOpacity>
+          <ActivityIndicator size={25} color="#fff" />
+        ) : (
+          <Text color="white"> Entrar</Text>
+        )}
+      </Button>
+      <Button variant="link" onPress={() => navigation.navigate("SignUp")}>
+        <Text color="white"> Criar conta</Text>
+      </Button>
 
-      <View style={styles.viewError}>
-          {error ? (<Text style={styles.error}>{error}</Text>): null}
-      </View>
-    </View>
+      <Box>{error ? <Text>{error}</Text> : null}</Box>
+    </Box>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#08090A",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 20,
-    color: "white",
-  },
-  input: {
-    borderWidth: 1,
-    padding: 10,
-    width: "80%",
-    borderRadius: 8,
-    margin: 5,
-    color: "white",
-    borderColor:"#DDD",
-    
-  },
-  button: {
-    backgroundColor: "#9400D3",
-    padding: 10,
-    width: "80%",
-    borderRadius: 8,
-    margin: 5,
-  },
-  text: {
-    textAlign: "center",
-    color: "white",
-  },
-  error: {
-    textAlign: "center",
-    color: "#DA2C38",
-    fontWeight:"bold"
-    
-  },
-  viewError:{
-    marginTop:10,
-  }
-});
+
 export default SignIn;

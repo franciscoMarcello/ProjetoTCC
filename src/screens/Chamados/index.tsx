@@ -34,8 +34,8 @@ const Chamado: React.FC = () => {
     <Box
       backgroundColor="#1a1c22"
       alignItems="center"
-      paddingTop="40"
-      size="full"
+      justifyContent="center"
+      flex="1"
     >
       <StatusBar style="dark" />
       <Text bold color="white" fontSize="2xl">
@@ -49,8 +49,8 @@ const Chamado: React.FC = () => {
             end: [1, 0],
           },
         }}
-        p="12"
         rounded="xl"
+        p="4"
         _text={{
           fontSize: "md",
           fontWeight: "medium",

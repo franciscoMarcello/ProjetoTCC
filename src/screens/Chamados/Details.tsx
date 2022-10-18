@@ -20,7 +20,6 @@ const Details: React.FC = () => {
         },
       });
       setChamado(response.data);
-      console.log(response.data);
     }
     getChamadoId();
   }, []);
@@ -32,6 +31,7 @@ const Details: React.FC = () => {
           <Text color="white">{item.description}</Text>
           <Text color="white">{item.status}</Text>
           <Text color="white">{item.tecninc}</Text>
+          <Text color="white">{item.category}</Text>
           <Text color="white">{item.created_at}</Text>
         </Box>
       ))}

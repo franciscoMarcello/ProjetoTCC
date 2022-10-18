@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import User from "../screens/User";
 import Endereco from "../screens/User/Endereco";
 import Details from "../screens/Chamados/Details";
+import CustomDrawer from "../components/CustomDrawer";
+import { AntDesign } from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -45,10 +47,35 @@ const AppRoutes: React.FC = () => (
       },
       headerTintColor: "white",
     }}
+    drawerContent={(props) => <CustomDrawer {...props} />}
   >
-    <Drawer.Screen name="Home" component={Home} />
-    <Drawer.Screen name="Chamados" component={Chamados} />
-    <Drawer.Screen name="Area do Usuário" component={Mystacks} />
+    <Drawer.Screen
+      options={{
+        drawerIcon: ({ color }) => {
+          <AntDesign name="API" size={22} color={color} />;
+        },
+      }}
+      name="Home"
+      component={Home}
+    />
+    <Drawer.Screen
+      options={{
+        drawerIcon: ({ color }) => {
+          <AntDesign name="API" size={22} color={color} />;
+        },
+      }}
+      name="Chamados"
+      component={Chamados}
+    />
+    <Drawer.Screen
+      name="Area do Usuário"
+      component={Mystacks}
+      options={{
+        drawerIcon: ({ color }) => {
+          <AntDesign name="API" size={22} color={color} />;
+        },
+      }}
+    />
   </Drawer.Navigator>
 );
 export default AppRoutes;

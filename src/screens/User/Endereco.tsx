@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-import { Input, Button } from "native-base";
+import { Input, Button, TextArea, Box, Heading } from "native-base";
 import api from "../../service/auth";
 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -38,56 +38,68 @@ const Endereco: React.FC = () => {
   const [street, setStreet] = useState("");
   const [cep, setCep] = useState("");
   const [number, setNumber] = useState("");
+  const [complemento, setComplemento] = useState("");
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="dark" />
-      <Text>{user.id}</Text>
-      <Input
-        size="xl"
-        onChangeText={setCity}
-        value={city}
-        placeholder="Cidade"
-        color={"white"}
-      />
-      <Input
-        size="xl"
-        onChangeText={setStreet}
-        value={street}
-        placeholder="Rua"
-        color={"white"}
-      />
-      <Input
-        size="xl"
-        onChangeText={setCep}
-        value={cep}
-        placeholder="Cep"
-        color={"white"}
-      />
-      <Input
-        size="xl"
-        onChangeText={setNumber}
-        value={number}
-        placeholder="Numero"
-        color={"white"}
-      />
-      <View>
-        <Button onPress={AddEndereco}>Click Me</Button>
-      </View>
-    </View>
+    <Box
+      backgroundColor="#1a1c22"
+      flex="1"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <StatusBar style="light" />
+      <Heading fontSize="xl" p="4" pb="3" color="white">
+        Novo Endereço
+      </Heading>
+      <Box width="80" pb="4">
+        <Input
+          size="xl"
+          onChangeText={setCity}
+          value={city}
+          placeholder="Cidade"
+          color={"white"}
+          marginBottom="3"
+        />
+        <Input
+          size="xl"
+          onChangeText={setStreet}
+          value={street}
+          placeholder="Rua"
+          color={"white"}
+          marginBottom="3"
+        />
+        <Input
+          size="xl"
+          onChangeText={setCep}
+          value={cep}
+          placeholder="Cep"
+          color={"white"}
+          marginBottom="3"
+        />
+        <Input
+          size="xl"
+          onChangeText={setNumber}
+          value={number}
+          placeholder="Numero"
+          color={"white"}
+          marginBottom="3"
+        />
+        <TextArea
+          size="xl"
+          onChangeText={setComplemento}
+          value={complemento}
+          placeholder="Complemento"
+          color={"white"}
+          marginBottom="3"
+        />
+      </Box>
+      <Box>
+        <Button bg="#580ef6" fontSize="md" onPress={AddEndereco}>
+          Adicionar endereço
+        </Button>
+      </Box>
+    </Box>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#08090A",
-    color: "#ffff",
-  },
-  text: {
-    color: "#fff",
-  },
-});
 
 export default Endereco;
