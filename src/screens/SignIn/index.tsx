@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { ActivityIndicator } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import {
-  Input,
   Box,
   Button,
   Text,
@@ -12,6 +11,7 @@ import {
   Icon,
   Image,
 } from "native-base";
+import { Input } from "../../components/input";
 import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
 import { useNavigation } from "@react-navigation/native";
@@ -38,9 +38,6 @@ const SignIn: React.FC = () => {
           rounded={100}
         />
       </Box>
-      <Heading pb={3} color="white">
-        Login
-      </Heading>
 
       <FormControl>
         <FormControl.Label>Email</FormControl.Label>
@@ -48,15 +45,13 @@ const SignIn: React.FC = () => {
           onChangeText={setEmail}
           value={email}
           placeholder="placeholder@gmail.com"
-          placeholderTextColor={"gray.500"}
           keyboardType="email-address"
           autoCapitalize="none"
-          color={"gray.100"}
           InputLeftElement={
             <Icon
               as={<Entypo name="email" />}
               size={5}
-              color="gray.500"
+              color="gray.200"
               ml={2}
             />
           }
@@ -69,14 +64,12 @@ const SignIn: React.FC = () => {
           value={password}
           placeholder="*********"
           secureTextEntry
-          placeholderTextColor={"gray.500"}
-          color={"gray.100"}
           autoCapitalize="none"
           InputLeftElement={
             <Icon
               as={<Entypo name="lock" />}
               size={5}
-              color="gray.500"
+              color="gray.200"
               ml={2}
             />
           }

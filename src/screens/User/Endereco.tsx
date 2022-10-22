@@ -1,14 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  StyleSheet,
-  ActivityIndicator,
-} from "react-native";
+import React, { useState, useContext } from "react";
 
-import { Input, Button, TextArea, Box, Heading } from "native-base";
+import {
+  Button,
+  TextArea,
+  Box,
+  Heading,
+  Icon,
+  Center,
+  FormControl,
+} from "native-base";
+import { Input } from "../../components/input";
 import api from "../../service/auth";
 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -25,6 +26,7 @@ const Endereco: React.FC = () => {
         city: city,
         cep: cep,
         customerId: user.id,
+        complement: complemento,
       });
 
       setStreet(""), setCity(""), setCep(""), setNumber("");
@@ -41,64 +43,62 @@ const Endereco: React.FC = () => {
   const [complemento, setComplemento] = useState("");
 
   return (
-    <Box
+    <Center
       backgroundColor="#1a1c22"
       flex="1"
       alignItems="center"
       justifyContent="center"
+      p={10}
     >
       <StatusBar style="light" />
-      <Heading fontSize="xl" p="4" pb="3" color="white">
+      <Heading fontSize="2xl" p="4" pb="3" color="white">
         Novo Endereço
       </Heading>
-      <Box width="80" pb="4">
+
+      <FormControl>
+        <FormControl.Label>Cidade</FormControl.Label>
+        <Input onChangeText={setCity} value={city} placeholder="Porto velho" />
+      </FormControl>
+      <FormControl>
+        <FormControl.Label>Rua</FormControl.Label>
         <Input
-          size="xl"
-          onChangeText={setCity}
-          value={city}
-          placeholder="Cidade"
-          color={"white"}
-          marginBottom="3"
-        />
-        <Input
-          size="xl"
           onChangeText={setStreet}
           value={street}
-          placeholder="Rua"
-          color={"white"}
-          marginBottom="3"
+          placeholder="Avenida tal"
         />
+      </FormControl>
+      <FormControl>
+        <FormControl.Label>CEP</FormControl.Label>
+        <Input onChangeText={setCep} value={cep} placeholder="7680000" />
+      </FormControl>
+      <FormControl>
+        <FormControl.Label>Numero</FormControl.Label>
         <Input
-          size="xl"
-          onChangeText={setCep}
-          value={cep}
-          placeholder="Cep"
-          color={"white"}
-          marginBottom="3"
-        />
-        <Input
-          size="xl"
           onChangeText={setNumber}
           value={number}
-          placeholder="Numero"
-          color={"white"}
-          marginBottom="3"
+          placeholder="64"
+          keyboardType="number-pad"
         />
+      </FormControl>
+      <FormControl>
+        <FormControl.Label>Complemento</FormControl.Label>
         <TextArea
           size="xl"
           onChangeText={setComplemento}
           value={complemento}
-          placeholder="Complemento"
-          color={"white"}
+          placeholder="Perto do posto"
+          color={"gray.100"}
+          placeholderTextColor={"gray.500"}
           marginBottom="3"
         />
-      </Box>
+      </FormControl>
+
       <Box>
         <Button bg="#580ef6" fontSize="md" onPress={AddEndereco}>
           Adicionar endereço
         </Button>
       </Box>
-    </Box>
+    </Center>
   );
 };
 

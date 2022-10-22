@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Text, Box, Avatar, Heading, Button } from "native-base";
+import { Text, Box, Image, Heading, Button } from "native-base";
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -17,15 +17,16 @@ const components: React.FC = (props) => {
         {...props}
         contentContainerStyle={{ backgroundColor: "#00000" }}
       >
-        <Box pb="2" pl="4">
-          <Avatar
-            padding="10"
+        <Box alignItems="center">
+          <Image
+            alt={user.name}
             source={{
-              uri: user.picture,
+              uri: "http://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png",
             }}
-          >
-            AJ
-          </Avatar>
+            size="32"
+            rounded={100}
+            resizeMode="cover"
+          />
         </Box>
         <Heading fontSize="2xl" pl="3" pt="2" mb="8" color="white">
           {user.name}

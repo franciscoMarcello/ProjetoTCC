@@ -14,7 +14,7 @@ type SignUpData = {
   phone: string;
 };
 type UserProps = {
-  tecnic: boolean;
+  tecnicId: boolean;
   id: string;
   name: string;
   email: string;
@@ -41,7 +41,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     token: "",
     email: "",
     picture: "",
-    tecnic: false,
+    tecnicId: false,
   });
   const [loadingAuth, setLoadingAuth] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -72,7 +72,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         password: password,
       });
 
-      const { id, name, token, picture, tecnic } = response.data;
+      const { id, name, token, picture, tecnicId } = response.data;
 
       const data = {
         ...response.data,
@@ -83,7 +83,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         email,
         token,
         picture,
-        tecnic,
+        tecnicId,
       });
       await AsyncStorage.setItem("@App:user", JSON.stringify(data));
       await AsyncStorage.setItem("@App:token", token);
@@ -123,7 +123,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         token: "",
         email: "",
         picture: "",
-        tecnic: false,
+        tecnicId: false,
       });
     });
   }

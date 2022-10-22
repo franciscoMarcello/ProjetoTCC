@@ -7,12 +7,12 @@ import User from "../screens/User";
 import Endereco from "../screens/User/Endereco";
 import Details from "../screens/Chamados/Details";
 import CustomDrawer from "../components/CustomDrawer";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Feather } from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 
-function Mystacks() {
+function MyUser() {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -21,11 +21,19 @@ function Mystacks() {
     >
       <Stack.Screen name="Arear" component={User} />
       <Stack.Screen name="Endereço" component={Endereco} />
-      <Stack.Screen
-        name="Details"
-        options={{ title: "Detalhes do chamado" }}
-        component={Details}
-      />
+      <Stack.Screen name="Details" component={Details} />
+    </Stack.Navigator>
+  );
+}
+function MyHome() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Dash" component={Home} />
+      <Stack.Screen name="Details" component={Details} />
     </Stack.Navigator>
   );
 }
@@ -56,7 +64,7 @@ const AppRoutes: React.FC = () => (
         },
       }}
       name="Home"
-      component={Home}
+      component={MyHome}
     />
     <Drawer.Screen
       options={{
@@ -68,11 +76,11 @@ const AppRoutes: React.FC = () => (
       component={Chamados}
     />
     <Drawer.Screen
-      name="Area do Usuário"
-      component={Mystacks}
+      name="Configurações"
+      component={MyUser}
       options={{
         drawerIcon: ({ color }) => {
-          <AntDesign name="API" size={22} color={color} />;
+          <Feather name="settings" size={24} color="black" />;
         },
       }}
     />

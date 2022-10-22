@@ -19,6 +19,7 @@ export type ChamadosProps = {
   category: string;
   created_at: Date;
   updated_at: Date;
+  image: string;
 };
 type EnderecoProps = {
   id: string;
@@ -30,6 +31,7 @@ type EnderecoProps = {
 };
 
 import api from "../../service/auth";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
@@ -50,7 +52,7 @@ const User: React.FC = () => {
           customerId: user.id,
         },
       });
-      console.log(user.picture);
+
       setDados(response.data);
       setEnderecos(response.data.Endereco);
 
@@ -67,21 +69,24 @@ const User: React.FC = () => {
     const response = await api.patch("/customer/update", {
       customerId: user.id,
     });
+    user.tecnicId = true;
     alert(response.data.message);
     console.log(response.data.message);
   }
 
   return (
-    <Box backgroundColor="#1a1c22" flex="1">
+    <Box backgroundColor="#1a1c22" flex="1" alignItems="center">
       <StatusBar style="light" />
       <Box padding="3" alignItems="center">
         <Image
-          borderRadius={100}
+          bg="white"
           source={{
-            uri: user.picture,
+            uri: "http://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png",
           }}
           alt="Alternate Text"
-          size="xl"
+          size="48"
+          rounded={100}
+          resizeMode="cover"
         />
       </Box>
       <Box alignItems="center">
@@ -97,10 +102,21 @@ const User: React.FC = () => {
       </Box>
       {Enderecos.length ? (
         Enderecos.map((item) => (
-          <Box key={item.id}>
-            <Text fontSize="xl" color="white" pb="1" pl="2">
-              {item.street}
-            </Text>
+          <Box bg="dark.50" borderRadius={8} width="72" mt={10} key={item.id}>
+            <Box flexDirection="row" justifyContent="space-between">
+              <Text fontSize="xl" color="white" pb="1" pl="2">
+                {item.street}
+              </Text>
+              <Box flexDirection="row">
+                <Button variant="ghost">
+                  <FontAwesome5 name="trash" size={20} color="#9f1239" />
+                </Button>
+                <Button variant="ghost">
+                  <FontAwesome5 name="edit" size={20} color="#0e7490" />
+                </Button>
+              </Box>
+            </Box>
+
             <Text fontSize="xl" color="white" pb="1" pl="2">
               {item.city}
             </Text>
@@ -130,7 +146,7 @@ const User: React.FC = () => {
               </Text>
             </Button>
           </Box>
-          {user.tecnic ? (
+          {!user.tecnicId ? (
             <Button onPress={tecnico} mt="2">
               <Text color="white" fontSize="md">
                 se tornar tecnico?

@@ -1,13 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useState, useContext } from "react";
 
-import { Input, Button, Box, Select, TextArea, Text } from "native-base";
+import { Button, Box, Select, TextArea, Text, Heading } from "native-base";
+import { Input } from "../../components/input";
 import api from "../../service/auth";
 
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
-import { useNavigation } from "@react-navigation/native";
 
 const Chamado: React.FC = () => {
   async function AddChamado() {
@@ -38,9 +36,9 @@ const Chamado: React.FC = () => {
       flex="1"
     >
       <StatusBar style="dark" />
-      <Text bold color="white" fontSize="2xl">
+      <Heading fontSize="2xl" p="4" pb="3" color="white">
         Novo Chamado
-      </Text>
+      </Heading>
       <Box
         bg={{
           linearGradient: {
@@ -59,12 +57,9 @@ const Chamado: React.FC = () => {
         }}
       >
         <Input
-          size="xl"
           onChangeText={setTitle}
           value={title}
           placeholder="Titulo do chamado"
-          color="gray.300"
-          marginBottom="3"
         />
         <TextArea
           size="xl"
@@ -99,11 +94,11 @@ const Chamado: React.FC = () => {
         </Select>
       </Box>
 
-      <View>
+      <Box>
         <Button backgroundColor="#580ef6" onPress={AddChamado}>
           Adicionar chamado
         </Button>
-      </View>
+      </Box>
     </Box>
   );
 };

@@ -89,16 +89,29 @@ const Home = () => {
                     </Text>
                   </VStack>
                   <Spacer />
-                  <Text
-                    fontSize="xs"
-                    _dark={{
-                      color: "white",
-                    }}
-                    color="white"
-                    alignSelf="flex-start"
-                  >
-                    {item.created_at}
-                  </Text>
+                  <VStack>
+                    <Text
+                      mb={3}
+                      fontSize="14"
+                      _dark={{
+                        color: "white",
+                      }}
+                      color="white"
+                      alignSelf="flex-start"
+                    >
+                      {item.created_at}
+                    </Text>
+                    <Text
+                      fontSize="14"
+                      _dark={{
+                        color: "white",
+                      }}
+                      color="white"
+                      alignSelf="flex-end"
+                    >
+                      Status: {item.status}
+                    </Text>
+                  </VStack>
                 </HStack>
               </Box>
             </Button>
