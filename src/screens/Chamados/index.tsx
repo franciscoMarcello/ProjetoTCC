@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-
-import { Button, Box, Select, TextArea, Text, Heading } from "native-base";
+import * as ImagePicker from "expo-image-picker";
+import { Button, Box, Select, TextArea, Image, Heading } from "native-base";
 import { Input } from "../../components/input";
 import api from "../../service/auth";
 
@@ -27,6 +27,21 @@ const Chamado: React.FC = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [cateegory, setCategory] = useState("");
+  const [image, setImage] = useState(null);
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
 
   return (
     <Box
@@ -93,7 +108,10 @@ const Chamado: React.FC = () => {
           <Select.Item label="Design" value="Design" />
         </Select>
       </Box>
-
+      <Button mb={3} minWidth="300" onPress={pickImage}>
+        Selecione imagem
+      </Button>
+      {image && <Image source={{ uri: image }} size={250} alt="Teste" mb={3} />}
       <Box>
         <Button backgroundColor="#580ef6" onPress={AddChamado}>
           Adicionar chamado

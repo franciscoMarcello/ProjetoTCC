@@ -12,22 +12,28 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/auth";
 import api from "../../service/auth";
-import { ChamadosProps } from "../User";
+import { ChamadosProps } from "../Chamados/Details";
 
 const Home = () => {
   const [Chamados, setChamados] = useState<ChamadosProps[]>([]);
   const isFocused = useIsFocused();
   const { user } = useContext(AuthContext);
+  const [list, setList] = useState(true);
 
   const navigation = useNavigation();
   useEffect(() => {
     async function me() {
-      const response = await api.get("/customer/me", {
-        params: {
-          customerId: user.id,
-        },
-      });
-      setChamados(response.data.Chamado);
+      if (list) {
+        const response = await api.get("/customer/chamados", {
+          params: {
+            customerId: user.id,
+          },
+        });
+        setChamados(response.data);
+      } else {
+        const response = await api.get("/chamados");
+        setChamados(response.data);
+      }
 
       // let dataformat = format(Chamados.created_at, "dd/MM/yy", {
       //   locale: ptBR,
@@ -36,13 +42,37 @@ const Home = () => {
       // console.log(dataformat);
     }
     me();
-  }, [isFocused]);
-
+  }, [isFocused, list]);
+  function me() {
+    setList(true);
+  }
+  function out() {
+    setList(false);
+  }
   return (
     <Box backgroundColor="#1a1c22" flex="1">
-      <Heading fontSize="2xl" p="4" pb="3" color="white">
-        Meus chamados
-      </Heading>
+      <Box flexDirection="row" justifyContent="center" mt="2">
+        <Button size="20" mr="2" variant="ghost" onPress={me}>
+          <Text fontSize="15" color="white">
+            Meus chamados
+          </Text>
+        </Button>
+        <Button size="20" variant="ghost" onPress={out}>
+          <Text fontSize="15" color="white">
+            Chamados
+          </Text>
+        </Button>
+      </Box>
+      {list ? (
+        <Heading fontSize="2xl" p="4" pb="3" color="white">
+          Meus chamados
+        </Heading>
+      ) : (
+        <Heading fontSize="2xl" p="4" pb="3" color="white">
+          Chamados
+        </Heading>
+      )}
+
       {Chamados.length ? (
         <FlatList
           data={Chamados}
@@ -121,18 +151,8 @@ const Home = () => {
       ) : (
         <Box justifyContent="center" alignItems="center" pt="20">
           <Text color="white" fontSize="lg">
-            Voce ainda não possui chamados
+            Nenhum chamado no momento
           </Text>
-          <Box pt="2">
-            <Button
-              backgroundColor="#580ef6"
-              onPress={() => navigation.navigate("Chamados")}
-            >
-              <Text color="white" fontSize="md">
-                Adicionar chamado
-              </Text>
-            </Button>
-          </Box>
         </Box>
       )}
     </Box>

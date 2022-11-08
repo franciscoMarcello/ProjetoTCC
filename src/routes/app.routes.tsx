@@ -8,6 +8,7 @@ import Endereco from "../screens/User/Endereco";
 import Details from "../screens/Chamados/Details";
 import CustomDrawer from "../components/CustomDrawer";
 import { AntDesign, Feather } from "@expo/vector-icons";
+import Historico from "../screens/Chamados/Historico";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -34,6 +35,7 @@ function MyHome() {
     >
       <Stack.Screen name="Dash" component={Home} />
       <Stack.Screen name="Details" component={Details} />
+      <Stack.Screen name="Historico" component={Historico} />
     </Stack.Navigator>
   );
 }
@@ -72,11 +74,11 @@ const AppRoutes: React.FC = () => (
           <AntDesign name="API" size={22} color={color} />;
         },
       }}
-      name="Chamados"
+      name="Novo Chamado"
       component={Chamados}
     />
     <Drawer.Screen
-      name="Configurações"
+      name="User"
       component={MyUser}
       options={{
         drawerIcon: ({ color }) => {

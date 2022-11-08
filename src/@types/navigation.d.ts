@@ -4,6 +4,9 @@ export declare global {
       Details: {
         ChamadoId: string;
       };
+      Historico: {
+        ChamadoId: string;
+      };
       Endereço: undefined;
       SignIn: undefined;
       SignUp: undefined;

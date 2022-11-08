@@ -10,17 +10,7 @@ type DadosProps = {
   email: string;
   phone: string;
 };
-export type ChamadosProps = {
-  id: string;
-  title: string;
-  description: string;
-  status: string;
-  tecninc: string;
-  category: string;
-  created_at: Date;
-  updated_at: Date;
-  image: string;
-};
+
 type EnderecoProps = {
   id: string;
   street: string;
@@ -35,9 +25,11 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { Termo } from "../../components/Modal";
 
 const User: React.FC = () => {
   const { user } = useContext(AuthContext);
+
   const [dados, setDados] = useState<DadosProps[]>([]);
   const [Enderecos, setEnderecos] = useState<EnderecoProps[]>([]);
 
@@ -64,15 +56,6 @@ const User: React.FC = () => {
     }
     me();
   }, [isFocused]);
-
-  async function tecnico() {
-    const response = await api.patch("/customer/update", {
-      customerId: user.id,
-    });
-    user.tecnicId = true;
-    alert(response.data.message);
-    console.log(response.data.message);
-  }
 
   return (
     <Box backgroundColor="#1a1c22" flex="1" alignItems="center">
@@ -146,15 +129,9 @@ const User: React.FC = () => {
               </Text>
             </Button>
           </Box>
-          {!user.tecnicId ? (
-            <Button onPress={tecnico} mt="2">
-              <Text color="white" fontSize="md">
-                se tornar tecnico?
-              </Text>
-            </Button>
-          ) : null}
         </Box>
       )}
+      {user.tecnicId === false && <Termo />}
     </Box>
   );
 };
