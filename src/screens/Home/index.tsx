@@ -11,6 +11,7 @@ import {
 } from "native-base";
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/auth";
+
 import api from "../../service/auth";
 import { ChamadosProps } from "../Chamados/Details";
 
@@ -31,7 +32,11 @@ const Home = () => {
         });
         setChamados(response.data);
       } else {
-        const response = await api.get("/chamados");
+        const response = await api.get("/chamados", {
+          params: {
+            customerId: user.id,
+          },
+        });
         setChamados(response.data);
       }
 
@@ -49,20 +54,25 @@ const Home = () => {
   function out() {
     setList(false);
   }
+
   return (
     <Box backgroundColor="#1a1c22" flex="1">
-      <Box flexDirection="row" justifyContent="center" mt="2">
-        <Button size="20" mr="2" variant="ghost" onPress={me}>
-          <Text fontSize="15" color="white">
-            Meus chamados
-          </Text>
-        </Button>
-        <Button size="20" variant="ghost" onPress={out}>
-          <Text fontSize="15" color="white">
-            Chamados
-          </Text>
-        </Button>
-      </Box>
+      {user.tecnicId ? (
+        <Box flexDirection="row" justifyContent="center" mt="2">
+          <Button size="20" mr="2" variant="ghost" onPress={me}>
+            <Text fontSize="15" color="white">
+              Meus chamados
+            </Text>
+          </Button>
+
+          <Button size="20" variant="ghost" onPress={out}>
+            <Text fontSize="15" color="white">
+              Chamados
+            </Text>
+          </Button>
+        </Box>
+      ) : null}
+
       {list ? (
         <Heading fontSize="2xl" p="4" pb="3" color="white">
           Meus chamados
@@ -93,7 +103,7 @@ const Home = () => {
                 pl={["2", "4"]}
                 pr={["0", "2"]}
                 py="2"
-                size="20"
+                size="auto"
                 width="sm"
               >
                 <HStack space={[2, 3]} justifyContent="space-between">
@@ -114,23 +124,15 @@ const Home = () => {
                         color: "white",
                       }}
                       fontSize="md"
+                      isTruncated
+                      maxW="100"
+                      w="90%"
                     >
                       {item.description}
                     </Text>
                   </VStack>
                   <Spacer />
                   <VStack>
-                    <Text
-                      mb={3}
-                      fontSize="14"
-                      _dark={{
-                        color: "white",
-                      }}
-                      color="white"
-                      alignSelf="flex-start"
-                    >
-                      {item.created_at}
-                    </Text>
                     <Text
                       fontSize="14"
                       _dark={{
@@ -140,6 +142,16 @@ const Home = () => {
                       alignSelf="flex-end"
                     >
                       Status: {item.status}
+                    </Text>
+                    <Text
+                      fontSize="14"
+                      _dark={{
+                        color: "white",
+                      }}
+                      color="white"
+                      alignSelf="flex-end"
+                    >
+                      Data: {item.created_at}
                     </Text>
                   </VStack>
                 </HStack>

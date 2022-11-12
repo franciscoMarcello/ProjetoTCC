@@ -1,6 +1,14 @@
 import React, { useState, useContext } from "react";
 import * as ImagePicker from "expo-image-picker";
-import { Button, Box, Select, TextArea, Image, Heading } from "native-base";
+import {
+  Button,
+  Box,
+  Select,
+  TextArea,
+  Image,
+  Heading,
+  Alert,
+} from "native-base";
 import { Input } from "../../components/input";
 import api from "../../service/auth";
 
@@ -8,26 +16,37 @@ import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
 
 const Chamado: React.FC = () => {
-  async function AddChamado() {
-    try {
-      const response = api.post("/chamado", {
-        description: description,
-        title: title,
-        category: cateegory,
-        customerId: user.id,
-      });
-      console.log(description, title, cateegory, user.id);
-      setDescription(""), setTitle(""), setCategory("");
-    } catch (err: any) {
-      setError(err.response.data.message);
-    }
-  }
   const { user } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [cateegory, setCategory] = useState("");
-  const [image, setImage] = useState(null);
+  const [imageAvatar, setImageAvatar] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState("");
+
+  async function AddChamado() {
+    try {
+      // const data = new FormData();
+      // data.append("title", title);
+      // data.append("description", description);
+      // data.append("image", imageAvatar);
+      // data.append("category", cateegory);
+      // data.append("customerId", user.id);
+      const response = await api.post("/chamado", {
+        title: title,
+        description: description,
+        category: cateegory,
+        customerId: user.id,
+      });
+
+      console.log(description, title, cateegory, user.id, imageAvatar);
+      setDescription(""), setTitle(""), setCategory(""), setAvatarUrl("");
+    } catch (err: any) {
+      setError(err.response.data.message);
+      alert(err.response.data.message);
+    }
+  }
+
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -39,7 +58,8 @@ const Chamado: React.FC = () => {
     console.log(result);
 
     if (!result.cancelled) {
-      setImage(result.uri);
+      setAvatarUrl(result.uri);
+      setImageAvatar(result.uri);
     }
   };
 
@@ -111,7 +131,10 @@ const Chamado: React.FC = () => {
       <Button mb={3} minWidth="300" onPress={pickImage}>
         Selecione imagem
       </Button>
-      {image && <Image source={{ uri: image }} size={250} alt="Teste" mb={3} />}
+
+      {avatarUrl && (
+        <Image source={{ uri: avatarUrl }} size={250} alt="Teste" mb={3} />
+      )}
       <Box>
         <Button backgroundColor="#580ef6" onPress={AddChamado}>
           Adicionar chamado

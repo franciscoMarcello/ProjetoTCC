@@ -56,7 +56,19 @@ const User: React.FC = () => {
     }
     me();
   }, [isFocused]);
-
+  async function delEndereco(id: string) {
+    console.log(id);
+    try {
+      const response = await api.delete("/customer/deleteEndereco", {
+        params: {
+          id: id,
+        },
+      });
+      alert(response.data.message);
+    } catch (err: any) {
+      alert(err.response.data.message);
+    }
+  }
   return (
     <Box backgroundColor="#1a1c22" flex="1" alignItems="center">
       <StatusBar style="light" />
@@ -74,43 +86,47 @@ const User: React.FC = () => {
       </Box>
       <Box alignItems="center">
         <Heading fontSize="xl" pl="3" pb="1" color="white">
-          {user.name}
+          Nome: {user.name}
         </Heading>
         <Text fontSize="xl" color="white" pl="2">
-          {user.email}
+          Email: {user.email}
         </Text>
         <Text fontSize="xl" color="white" pb="1" pl="2">
-          {dados.phone}
+          Telefone: {dados.phone}
         </Text>
+        {user.tecnicId ? (
+          <Text fontSize="xl" color="white" pb="1" pl="2">
+            Voce e tecnico
+          </Text>
+        ) : (
+          <Termo />
+        )}
       </Box>
       {Enderecos.length ? (
         Enderecos.map((item) => (
           <Box bg="dark.50" borderRadius={8} width="72" mt={10} key={item.id}>
             <Box flexDirection="row" justifyContent="space-between">
               <Text fontSize="xl" color="white" pb="1" pl="2">
-                {item.street}
+                Rua: {item.street}
               </Text>
               <Box flexDirection="row">
-                <Button variant="ghost">
+                <Button variant="ghost" onPress={() => delEndereco(item.id)}>
                   <FontAwesome5 name="trash" size={20} color="#9f1239" />
-                </Button>
-                <Button variant="ghost">
-                  <FontAwesome5 name="edit" size={20} color="#0e7490" />
                 </Button>
               </Box>
             </Box>
 
             <Text fontSize="xl" color="white" pb="1" pl="2">
-              {item.city}
+              Cidade: {item.city}
             </Text>
             <Text fontSize="xl" color="white" pb="1" pl="2">
-              {item.cep}
+              CEP: {item.cep}
             </Text>
             <Text fontSize="xl" color="white" pb="1" pl="2">
-              {item.complement}
+              Numero: {item.number}
             </Text>
             <Text fontSize="xl" color="white" pb="1" pl="2">
-              {item.number}
+              Complemento: {item.complement}
             </Text>
           </Box>
         ))
@@ -131,7 +147,6 @@ const User: React.FC = () => {
           </Box>
         </Box>
       )}
-      {user.tecnicId === false && <Termo />}
     </Box>
   );
 };

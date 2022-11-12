@@ -29,7 +29,7 @@ const Endereco: React.FC = () => {
         complement: complemento,
       });
 
-      setStreet(""), setCity(""), setCep(""), setNumber("");
+      setStreet(""), setCity(""), setCep(""), setNumber(""), setComplemento("");
     } catch (err) {
       console.log(err);
     }
@@ -90,6 +90,7 @@ const Endereco: React.FC = () => {
           color={"gray.100"}
           placeholderTextColor={"gray.500"}
           marginBottom="3"
+          autoCompleteType="none"
         />
       </FormControl>
 
