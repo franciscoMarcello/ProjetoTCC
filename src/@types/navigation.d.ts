@@ -7,6 +7,10 @@ export declare global {
       Historico: {
         ChamadoId: string;
       };
+      Avaliacao: {
+        ChamadoId: string;
+      };
+      Dash: undefined;
       Endereço: undefined;
       SignIn: undefined;
       SignUp: undefined;

@@ -8,6 +8,7 @@ import {
   Spacer,
   VStack,
   Text,
+  StatusBar,
 } from "native-base";
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/auth";
@@ -57,6 +58,7 @@ const Home = () => {
 
   return (
     <Box backgroundColor="#1a1c22" flex="1">
+      <StatusBar barStyle="light-content" />
       {user.tecnicId ? (
         <Box flexDirection="row" justifyContent="center" mt="2">
           <Button size="20" mr="2" variant="ghost" onPress={me}>

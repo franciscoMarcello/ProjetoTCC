@@ -92,7 +92,7 @@ const Historico: React.FC = () => {
             <Box mt="2" borderColor="gray.700" py="2" size="auto" width="sm">
               {item.customerId === user.id ? (
                 <Box flexDirection="row" mt="2">
-                  <Box mr="3">
+                  <Box mr="3" alignItems="center">
                     <Avatar
                       bg="green.500"
                       source={{
@@ -137,7 +137,7 @@ const Historico: React.FC = () => {
                       {item.created_at}
                     </Text>
                   </Box>
-                  <Box ml="3">
+                  <Box ml="3" alignItems="center">
                     <Avatar
                       bg="green.500"
                       source={{

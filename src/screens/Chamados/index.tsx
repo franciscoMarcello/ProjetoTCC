@@ -8,11 +8,11 @@ import {
   Image,
   Heading,
   Alert,
+  StatusBar,
 } from "native-base";
 import { Input } from "../../components/input";
 import api from "../../service/auth";
 
-import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
 
 const Chamado: React.FC = () => {
@@ -70,7 +70,7 @@ const Chamado: React.FC = () => {
       justifyContent="center"
       flex="1"
     >
-      <StatusBar style="dark" />
+      <StatusBar barStyle="light-content" />
       <Heading fontSize="2xl" p="4" pb="3" color="white">
         Novo Chamado
       </Heading>
@@ -103,6 +103,7 @@ const Chamado: React.FC = () => {
           placeholder="Descrição"
           color="gray.300"
           marginBottom="3"
+          autoCompleteType="none"
         />
         <Select
           marginBottom="3"

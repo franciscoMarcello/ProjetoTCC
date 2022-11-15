@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Box, Button, Heading, Text, Image } from "native-base";
 
-import ptBR from "date-fns/locale/pt-BR";
-import format from "date-fns/format";
+import { AntDesign } from "@expo/vector-icons";
 
 type DadosProps = {
   id: string;
@@ -86,7 +85,8 @@ const User: React.FC = () => {
       </Box>
       <Box alignItems="center">
         <Heading fontSize="xl" pl="3" pb="1" color="white">
-          Nome: {user.name}
+          Nome: {user.name} <AntDesign name="star" size={24} color="black" />{" "}
+          4,2
         </Heading>
         <Text fontSize="xl" color="white" pl="2">
           Email: {user.email}
@@ -96,7 +96,7 @@ const User: React.FC = () => {
         </Text>
         {user.tecnicId ? (
           <Text fontSize="xl" color="white" pb="1" pl="2">
-            Voce e tecnico
+            Voce já e tecnico
           </Text>
         ) : (
           <Termo />

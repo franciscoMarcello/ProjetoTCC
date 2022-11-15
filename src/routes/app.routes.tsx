@@ -9,6 +9,7 @@ import Details from "../screens/Chamados/Details";
 import CustomDrawer from "../components/CustomDrawer";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import Historico from "../screens/Chamados/Historico";
+import Avaliacao from "../screens/Avaliacao";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -22,7 +23,6 @@ function MyUser() {
     >
       <Stack.Screen name="Arear" component={User} />
       <Stack.Screen name="Endereço" component={Endereco} />
-      <Stack.Screen name="Details" component={Details} />
     </Stack.Navigator>
   );
 }
@@ -34,6 +34,7 @@ function MyHome() {
       }}
     >
       <Stack.Screen name="Dash" component={Home} />
+      <Stack.Screen name="Avaliacao" component={Avaliacao} />
       <Stack.Screen name="Details" component={Details} />
       <Stack.Screen name="Historico" component={Historico} />
     </Stack.Navigator>
