@@ -10,6 +10,7 @@ export declare global {
       Avaliacao: {
         ChamadoId: string;
       };
+      Dash: undefined;
       Endereço: undefined;
       SignIn: undefined;
       SignUp: undefined;

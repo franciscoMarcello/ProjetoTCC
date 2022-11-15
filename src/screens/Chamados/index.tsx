@@ -8,12 +8,13 @@ import {
   Image,
   Heading,
   Alert,
+  StatusBar,
 } from "native-base";
 import { Input } from "../../components/input";
 import api from "../../service/auth";
 
-import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
+import { useNavigation } from "@react-navigation/native";
 
 const Chamado: React.FC = () => {
   const { user } = useContext(AuthContext);
@@ -23,6 +24,7 @@ const Chamado: React.FC = () => {
   const [cateegory, setCategory] = useState("");
   const [imageAvatar, setImageAvatar] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState("");
+  const navigation = useNavigation();
 
   async function AddChamado() {
     try {
@@ -41,6 +43,7 @@ const Chamado: React.FC = () => {
 
       console.log(description, title, cateegory, user.id, imageAvatar);
       setDescription(""), setTitle(""), setCategory(""), setAvatarUrl("");
+      navigation.goBack();
     } catch (err: any) {
       setError(err.response.data.message);
       alert(err.response.data.message);
@@ -70,7 +73,7 @@ const Chamado: React.FC = () => {
       justifyContent="center"
       flex="1"
     >
-      <StatusBar style="dark" />
+      <StatusBar barStyle="light-content" />
       <Heading fontSize="2xl" p="4" pb="3" color="white">
         Novo Chamado
       </Heading>
@@ -103,6 +106,7 @@ const Chamado: React.FC = () => {
           placeholder="Descrição"
           color="gray.300"
           marginBottom="3"
+          autoCompleteType="none"
         />
         <Select
           marginBottom="3"
@@ -128,12 +132,13 @@ const Chamado: React.FC = () => {
           <Select.Item label="Design" value="Design" />
         </Select>
       </Box>
-      <Button mb={3} minWidth="300" onPress={pickImage}>
-        Selecione imagem
-      </Button>
 
-      {avatarUrl && (
+      {avatarUrl ? (
         <Image source={{ uri: avatarUrl }} size={250} alt="Teste" mb={3} />
+      ) : (
+        <Button mb={3} minWidth="300" onPress={pickImage}>
+          Selecione imagem
+        </Button>
       )}
       <Box>
         <Button backgroundColor="#580ef6" onPress={AddChamado}>

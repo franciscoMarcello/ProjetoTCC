@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { format } from "date-fns";
-import { Button, Box, Text, Heading, Image, ScrollView } from "native-base";
+
+import {
+  Button,
+  Box,
+  Text,
+  Heading,
+  Image,
+  ScrollView,
+  StatusBar,
+  Divider,
+} from "native-base";
 import api from "../../service/auth";
 import { useContext } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { Entypo, FontAwesome } from "@expo/vector-icons";
+
 export type ChamadosProps = {
   id: string;
   title: string;
@@ -23,6 +32,14 @@ export type ChamadosProps = {
     name: string;
     phone: string;
     email: string;
+    Endereco: {
+      id: string;
+      street: string;
+      city: string;
+      complement: string;
+      cep: number;
+      number: number;
+    };
   };
 };
 type ParamsProps = {
@@ -30,7 +47,7 @@ type ParamsProps = {
 };
 
 import AuthContext from "../../contexts/auth";
-import { ModalAvaliacao } from "../../components/ModalAvaliacao";
+
 const Details: React.FC = () => {
   const route = useRoute();
   const { ChamadoId } = route.params as ParamsProps;
@@ -58,7 +75,8 @@ const Details: React.FC = () => {
         chamadoId: ChamadoId,
       });
       alert("Solução aprovada!");
-      navigation.navigate("Avaliacao", chamado.id);
+
+      navigation.navigate("Avaliacao", { ChamadoId: ChamadoId });
     } catch (err: any) {
       alert(err.response.data.message);
     }
@@ -99,6 +117,7 @@ const Details: React.FC = () => {
   }, []);
   return (
     <ScrollView w="auto" h="80" bg="#1a1c22">
+      <StatusBar barStyle="light-content" />
       <Box bg="#1a1c22" flex="1">
         <Heading fontSize="2xl" p="4" pb="3" color="white">
           Detalhes do chamado
@@ -113,121 +132,96 @@ const Details: React.FC = () => {
                 }}
                 alt="Alternate Text"
                 size="48"
-                w="48"
+                w="64"
                 resizeMode="cover"
+                rounded="4"
               />
             </Box>
+            <Heading fontSize="xl" pl="2" pt="3" pb="3" color="white">
+              Informações do Chamado
+            </Heading>
             <Box
-              flexDirection="row"
               mt="2"
-              alignItems="center"
-              borderRadius="8"
-              height="8"
+              pl="2"
+              borderRadius="5"
+              height="auto"
               backgroundColor="muted.800"
+              mb="1"
             >
               <Text color="white" fontSize={20}>
                 Titulo: {item.title}
               </Text>
-            </Box>
-            <Box
-              flexDirection="row"
-              mt="2"
-              alignItems="center"
-              borderRadius="8"
-              height="auto"
-              backgroundColor="muted.800"
-            >
+
               <Text color="white" fontSize={20}>
                 Descrição: {item.description}
               </Text>
-            </Box>
-            <Box
-              flexDirection="row"
-              mt="2"
-              alignItems="center"
-              borderRadius="8"
-              height="8"
-              backgroundColor="muted.800"
-            >
+
               <Text color="white" fontSize={20}>
                 Status: {item.status}
               </Text>
-            </Box>
-            <Box
-              flexDirection="row"
-              mt="2"
-              alignItems="center"
-              borderRadius="8"
-              height="8"
-              backgroundColor="muted.800"
-            >
+
               <Text color="white" fontSize={20}>
                 Tecnico: {item.tecnic}
               </Text>
-            </Box>
-            <Box
-              flexDirection="row"
-              mt="2"
-              alignItems="center"
-              borderRadius="8"
-              height="8"
-              backgroundColor="muted.800"
-            >
               <Text color="white" fontSize={20}>
                 Categoria: {item.category}
               </Text>
             </Box>
+            <Divider my="3" thickness="2" bg="#580ef6" />
+            <Heading fontSize="xl" pl="2" pt="2" pb="3" color="white">
+              Informações do parceiro
+            </Heading>
             <Box
-              flexDirection="row"
               mt="2"
-              alignItems="center"
-              borderRadius="8"
-              height="8"
+              borderRadius="5"
+              height="auto"
+              pl="2"
               backgroundColor="muted.800"
+              mb="1"
             >
-              <Text color="white" fontSize={18}>
-                Data: {item.created_at}
-              </Text>
-            </Box>
-            <Box
-              flexDirection="row"
-              mt="2"
-              alignItems="center"
-              borderRadius="8"
-              height="8"
-              backgroundColor="muted.800"
-            >
-              <Text color="white" fontSize={18}>
+              <Text color="white" fontSize={20}>
                 Nome: {item.customer.name}
               </Text>
-            </Box>
-            <Box
-              flexDirection="row"
-              mt="2"
-              alignItems="center"
-              borderRadius="8"
-              height="8"
-              backgroundColor="muted.800"
-            >
-              <Entypo name="email" size={20} color="white" />
-              <Text color="white" fontSize={18} ml="2">
+
+              <Text color="white" fontSize={20}>
                 Email: {item.customer.email}
               </Text>
-            </Box>
-            <Box
-              flexDirection="row"
-              mt="2"
-              alignItems="center"
-              borderRadius="8"
-              height="8"
-              backgroundColor="muted.800"
-            >
-              <FontAwesome name="whatsapp" size={20} color="white" />
-              <Text color="white" fontSize={18} ml="2">
+
+              <Text color="white" fontSize={20}>
                 Telefone: {item.customer.phone}
               </Text>
             </Box>
+            <Divider my="3" thickness="2" bg="#580ef6" />
+            <Heading fontSize="xl" pl="2" pt="3" pb="3" color="white">
+              Endereço do parceiro
+            </Heading>
+            <Box
+              mt="2"
+              borderRadius="5"
+              height="auto"
+              pl="2"
+              backgroundColor="muted.800"
+              mb="5"
+            >
+              <Text color="white" fontSize={20}>
+                Cidade: {item.customer.Endereco[0].city}
+              </Text>
 
+              <Text color="white" fontSize={20}>
+                Rua: {item.customer.Endereco[0].street}
+              </Text>
+
+              <Text color="white" fontSize={20}>
+                Número: {item.customer.Endereco[0].number}
+              </Text>
+              <Text color="white" fontSize={20}>
+                CEP: {item.customer.Endereco[0].cep}
+              </Text>
+
+              <Text color="white" fontSize={20}>
+                Complemento: {item.customer.Endereco[0].complement}
+              </Text>
+            </Box>
             {user.id === item.customerId &&
               item.status === "Pendente de validação" && (
                 <Box flexDirection="row" justifyContent="center">

@@ -1,4 +1,4 @@
-import { Button, Center, Checkbox, Modal } from "native-base";
+import { Button, Center, Checkbox, Modal, Text } from "native-base";
 import React, { useContext, useState } from "react";
 import AuthContext from "../contexts/auth";
 import api from "../service/auth";
@@ -16,8 +16,10 @@ export function Termo() {
   const [showModal, setShowModal] = useState(false);
   return (
     <Center>
-      <Button fontSize="sm" mt="2" onPress={() => setShowModal(true)}>
-        Se tornar Tecnico
+      <Button mt="2" onPress={() => setShowModal(true)}>
+        <Text color="white" fontSize="16">
+          Deseja se tornar Tecnico ?
+        </Text>
       </Button>
       <Modal
         isOpen={showModal}

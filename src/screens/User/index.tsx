@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Box, Button, Heading, Text, Image } from "native-base";
 
-import ptBR from "date-fns/locale/pt-BR";
-import format from "date-fns/format";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 
 type DadosProps = {
   id: string;
@@ -95,11 +94,23 @@ const User: React.FC = () => {
           Telefone: {dados.phone}
         </Text>
         {user.tecnicId ? (
-          <Text fontSize="xl" color="white" pb="1" pl="2">
-            Voce e tecnico
-          </Text>
+          <Box alignItems="center" flexDirection="row">
+            <Text fontSize="xl" color="white" pb="1" pl="2" mr="1">
+              Você já e técnico
+            </Text>
+            <MaterialIcons name="verified" size={24} color="#580ef6" />
+          </Box>
         ) : (
           <Termo />
+        )}
+        {user.tecnicId && (
+          <Box flexDirection="row" alignItems="center">
+            <AntDesign name="star" size={24} color="#daa520" />
+
+            <Text color="white" fontSize="16" ml="1">
+              4,2
+            </Text>
+          </Box>
         )}
       </Box>
       {Enderecos.length ? (

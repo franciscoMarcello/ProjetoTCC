@@ -86,7 +86,13 @@ const SignIn: React.FC = () => {
         <Text color="white"> Criar conta</Text>
       </Button>
 
-      <Box>{error ? <Text>{error}</Text> : null}</Box>
+      <Box alignItems="center">
+        {error ? (
+          <Text fontSize="xl" color="red.500">
+            {error}
+          </Text>
+        ) : null}
+      </Box>
     </Box>
   );
 };
