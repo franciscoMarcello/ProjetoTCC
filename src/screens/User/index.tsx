@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Box, Button, Heading, Text, Image } from "native-base";
-
-import { AntDesign, MaterialIcons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+import { AntDesign, MaterialIcons, Feather } from "@expo/vector-icons";
 
 type DadosProps = {
   id: string;
@@ -32,8 +32,8 @@ const User: React.FC = () => {
   const [dados, setDados] = useState<DadosProps[]>([]);
   const [Enderecos, setEnderecos] = useState<EnderecoProps[]>([]);
 
-  const [picture, setPicture] = useState(user.picture);
-
+  const [picture, setPicture] = useState(user.picture || null);
+  const URL = "https://192.168.100.178:5000/customer/updateAvatar";
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   useEffect(() => {
@@ -68,20 +68,56 @@ const User: React.FC = () => {
       alert(err.response.data.message);
     }
   }
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+    if (!result.canceled) {
+      setPicture(result.assets[0].uri);
+      const formData = new FormData();
+      formData.append("picture", {
+        uri: result.assets[0].uri,
+        type: result.assets[0].type,
+        name: result.assets[0].fileName,
+      });
+      formData.append("customerId", user.id);
+      let res = await fetch(URL, {
+        method: "patch",
+        body: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+        .then((res) => {
+          console.log("image uploaded");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
   return (
     <Box backgroundColor="#1a1c22" flex="1" alignItems="center">
       <StatusBar style="light" />
-      <Box padding="3" alignItems="center">
-        <Image
-          bg="white"
-          source={{
-            uri: "http://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png",
-          }}
-          alt="Alternate Text"
-          size="48"
-          rounded={100}
-          resizeMode="cover"
-        />
+      <Box alignItems="center">
+        <Button variant="ghost" onPress={pickImage}>
+          <Image
+            bg="white"
+            source={{
+              uri: picture,
+            }}
+            alt="Alternate Text"
+            size="48"
+            rounded={100}
+            resizeMode="cover"
+          />
+          <Box alignItems="flex-end">
+            <Feather name="edit-2" size={24} color="white" />
+          </Box>
+        </Button>
       </Box>
       <Box alignItems="center">
         <Heading fontSize="xl" pl="3" pb="1" color="white">

@@ -14,6 +14,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/auth";
 
 import api from "../../service/auth";
+import { formatDate } from "../../utils/FormatDate";
 import { ChamadosProps } from "../Chamados/Details";
 
 const Home = () => {
@@ -23,6 +24,7 @@ const Home = () => {
   const [list, setList] = useState(true);
 
   const navigation = useNavigation();
+
   useEffect(() => {
     async function me() {
       if (list) {
@@ -145,6 +147,7 @@ const Home = () => {
                     >
                       Status: {item.status}
                     </Text>
+
                     <Text
                       fontSize="14"
                       _dark={{
@@ -153,7 +156,7 @@ const Home = () => {
                       color="white"
                       alignSelf="flex-end"
                     >
-                      Data: {item.created_at}
+                      Data: {formatDate(item.created_at)}
                     </Text>
                   </VStack>
                 </HStack>
