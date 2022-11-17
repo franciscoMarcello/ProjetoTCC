@@ -14,6 +14,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/auth";
 
 import api from "../../service/auth";
+import { formatDate } from "../../utils/FormatDate";
 import { ChamadosProps } from "../Chamados/Details";
 
 const Home = () => {
@@ -23,10 +24,11 @@ const Home = () => {
   const [list, setList] = useState(true);
 
   const navigation = useNavigation();
+
   useEffect(() => {
     async function me() {
       if (list) {
-        const response = await api.get("/customer/chamados", {
+        const response = await api.get("/customer/meusChamados", {
           params: {
             customerId: user.id,
           },
@@ -40,12 +42,6 @@ const Home = () => {
         });
         setChamados(response.data);
       }
-
-      // let dataformat = format(Chamados.created_at, "dd/MM/yy", {
-      //   locale: ptBR,
-      // });
-
-      // console.log(dataformat);
     }
     me();
   }, [isFocused, list]);
@@ -108,7 +104,7 @@ const Home = () => {
                 size="auto"
                 width="sm"
               >
-                <HStack space={[2, 3]} justifyContent="space-between">
+                <HStack space={[2, 3]} justifyContent="center">
                   <VStack>
                     <Text
                       _dark={{
@@ -117,6 +113,7 @@ const Home = () => {
                       color="white"
                       bold
                       fontSize="xl"
+                      isTruncated
                     >
                       {item.title}
                     </Text>
@@ -127,36 +124,39 @@ const Home = () => {
                       }}
                       fontSize="md"
                       isTruncated
-                      maxW="100"
-                      w="90%"
                     >
                       {item.description}
                     </Text>
                   </VStack>
                   <Spacer />
-                  <VStack>
-                    <Text
-                      fontSize="14"
-                      _dark={{
-                        color: "white",
-                      }}
-                      color="white"
-                      alignSelf="flex-end"
-                    >
-                      Status: {item.status}
-                    </Text>
-                    <Text
-                      fontSize="14"
-                      _dark={{
-                        color: "white",
-                      }}
-                      color="white"
-                      alignSelf="flex-end"
-                    >
-                      Data: {item.created_at}
-                    </Text>
-                  </VStack>
                 </HStack>
+                <VStack
+                  mt="2"
+                  flexDirection="row"
+                  justifyContent="space-between"
+                >
+                  <Text
+                    fontSize="14"
+                    _dark={{
+                      color: "white",
+                    }}
+                    color="white"
+                    alignSelf="flex-start"
+                  >
+                    Status: {item.status}
+                  </Text>
+
+                  <Text
+                    fontSize="14"
+                    _dark={{
+                      color: "white",
+                    }}
+                    color="white"
+                    alignSelf="flex-end"
+                  >
+                    Data: {formatDate(item.created_at)}
+                  </Text>
+                </VStack>
               </Box>
             </Button>
           )}

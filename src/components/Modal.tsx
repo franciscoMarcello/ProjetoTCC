@@ -35,150 +35,215 @@ export function Termo() {
           <Modal.CloseButton />
           <Modal.Header>Termo de uso</Modal.Header>
           <Modal.Body>
-            Seja bem-vindo ao nosso site. Leia com atenção todos os termos
-            abaixo. Este documento, e todo o conteúdo do site é oferecido por
-            (ADICIONAR DADOS DA EMPRESA OU NOME FANTASIA), neste termo
-            representado apenas por “EMPRESA”, que regulamenta todos os direitos
-            e obrigações com todos que acessam o site, denominado neste termo
-            como “VISITANTE”, reguardado todos os direitos previstos na
-            legislação, trazem as cláusulas abaixo como requisito para acesso e
-            visita do mesmo, situado no endereço (ADICIONAR ENDEREÇO DO SITE). A
-            permanência no website implica-se automaticamente na leitura e
-            aceitação tácita do presente termos de uso a seguir. Este termo foi
-            atualizado pela última vez em 14 de setembro de 2021. 1. DA FUNÇÃO
-            DO SITE Este site foi criado e desenvolvido com a função de trazer
-            conteúdo informativo de alta qualidade, a venda de produtos físicos,
-            digitais e a divulgação de prestação de serviço. A EMPRESA busca
-            através da criação de conteúdo de alta qualidade, desenvolvido por
-            profissionais da área, trazer o conhecimento ao alcance de todos,
-            assim como a divulgação dos próprios serviços. Nesta plataforma,
-            poderá ser realizado tanto a divulgação de material original de alta
-            qualidade, assim como a divulgação de produtos de e-commerce. Todo o
-            conteúdo presente neste site foi desenvolvido buscando fontes e
-            materiais de confiabilidade, assim como são baseados em estudos
-            sérios e respeitados, através de pesquisa de alta nível. Todo o
-            conteúdo é atualizado periodicamente, porém, pode conter em algum
-            artigo, vídeo ou imagem, alguma informação que não reflita a verdade
-            atual, não podendo a EMPRESA ser responsabilizada de nenhuma forma
-            ou meio por qualquer conteúdo que não esteja devidamente atualizado.
-            É de responsabilidade do usuário de usar todas as informações
-            presentes no site com senso crítico, utilizando apenas como fonte de
-            informação, e sempre buscando especialistas da área para a solução
-            concreta do seu conflito. 2. DO ACEITE DOS TERMOS Este documento,
-            chamado “Termos de Uso”, aplicáveis a todos os visitantes do site,
-            foi desenvolvido por Diego Castro Advogado – OAB/PI 15.613,
-            modificado com permissão para este site. Este termo especifica e
-            exige que todo usuário ao acessar o site da EMPRESA, leia e
-            compreenda todas as cláusulas do mesmo, visto que ele estabelece
-            entre a EMPRESA e o VISITANTE direitos e obrigações entre ambas as
-            partes, aceitos expressamente pelo VISITANTE a permanecer navegando
-            no site da EMPRESA. Ao continuar acessando o site, o VISITANTE
-            expressa que aceita e entende todas as cláusulas, assim como
-            concorda integralmente com cada uma delas, sendo este aceite
-            imprescindível para a permanência na mesma. Caso o VISITANTE
-            discorde de alguma cláusula ou termo deste contrato, o mesmo deve
-            imediatamente interromper sua navegação de todas as formas e meios.
-            Este termo pode e irá ser atualizado periodicamente pela EMPRESA,
-            que se resguarda no direito de alteração, sem qualquer tipo de aviso
-            prévio e comunicação. É importante que o VISITANTE confira sempre se
-            houve movimentação e qual foi a última atualização do mesmo no
-            começo da página. 3. DO GLOSSÁRIO Este termo pode conter algumas
-            palavras específicas que podem não se de conhecimento geral. Entre
-            elas: VISITANTE: Todo e qualquer usuário do site, de qualquer forma
-            e meio, que acesse através de computador, notebook, tablet, celular
-            ou quaisquer outros meios, o website ou plataforma da empresa.
-            NAVEGAÇÃO: O ato de visitar páginas e conteúdo do website ou
-            plataforma da empresa. COOKIES: Pequenos arquivos de textos gerados
-            automaticamente pelo site e transmitido para o navegador do
-            visitante, que servem para melhorar a usabilidade do visitante.
-            LOGIN: Dados de acesso do visitante ao realizar o cadastro junto a
-            EMPRESA, dividido entre usuário e senha, que dá acesso a funções
-            restritas do site. HIPERLINKS: São links clicáveis que podem
-            aparecer pelo site ou no conteúdo, que levam para outra página da
-            EMPRESA ou site externo. OFFLINE: Quando o site ou plataforma se
-            encontra indisponível, não podendo ser acessado externamente por
-            nenhum usuário. Em caso de dúvidas sobre qualquer palavra utilizada
-            neste termo, o VISITANTE deverá entrar em contato com a EMPRESA
-            através dos canais de comunicação encontradas no site. 4. DO ACESSO
-            AO SITE O Site e plataforma funcionam normalmente 24 (vinte e
-            quatro) horas por dia, porém podem ocorrer pequenas interrupções de
-            forma temporária para ajustes, manutenção, mudança de servidores,
-            falhas técnicas ou por ordem de força maior, que podem deixar o site
-            indisponível por tempo limitado. A EMPRESA não se responsabiliza por
-            nenhuma perda de oportunidade ou prejuízos que esta
-            indisponibilidade temporária possa gerar aos usuários. Em caso de
-            manutenção que exigirem um tempo maior, a EMPRESA irá informar
-            previamente aos clientes da necessidade e do tempo previsto em que o
-            site ou plataforma ficará offline. O acesso ao site só é permitido a
-            maiores de 18 anos de idade ou que possuírem capacidade civil plena.
-            Para acesso de menores de idade, é necessária a expressa autorização
-            dos pais ou tutores, ficando o mesmo responsáveis sobre qualquer
-            compra ou acesso efetuados pelo mesmo. Caso seja necessário realizar
-            um cadastro junto a plataforma, onde o VISITANTE deverá preencher um
-            formulário com seus dados e informações, para ter acesso a alguma
-            parte restrita, ou realizar alguma compra. Todos os dados estão
-            protegidos conforme a Lei Geral de Proteção de Dados, e ao realizar
-            o cadastro junto ao site, o VISITANTE concorda integralmente com a
-            coleta de dados conforme a Lei e com a Política de Privacidade da
-            EMPRESA. 5. DA LICENÇA DE USO E CÓPIA O visitante poderá acessar
-            todo o conteúdo do website, como artigos, vídeos, imagens, produtos
-            e serviços, não significando nenhum tipo de cessão de direito ou
-            permissão de uso, ou de cópia dos mesmo. Todos os direitos são
-            preservados, conforme a legislação brasileira, principalmente na Lei
-            de Direitos Autorais (regulamentada na Lei nº 9.610/18), assim como
-            no Código Civil brasileiro (regulamentada na Lei nº 10.406/02), ou
-            quaisquer outras legislações aplicáveis. Todo o conteúdo do site é
-            protegido por direitos autorais, e seu uso, cópia, transmissão,
-            venda, cessão ou revenda, deve seguir a lei brasileira, tendo a
-            EMPRESA todos os seus direitos reservados, e não permitindo a cópia
-            ou utilização de nenhuma forma e meio, sem autorização expressa e
-            por escrita da mesma. A EMPRESA poderá em casos concretos permitir
-            pontualmente exceções a este direito, que serão claramente
-            destacados no mesmo, com a forma e permissão de uso do conteúdo
-            protegido. Este direito é revogável e limitado as especificações de
-            cada caso. 6. DAS OBRIGAÇÕES O VISITANTE ao utilizar o website da
-            EMPRESA, concorda integralmente em: De nenhuma forma ou meio
-            realizar qualquer tipo de ação que tente invadir, hacker, destruir
-            ou prejudicar a estrutura do site, plataforma da EMPRESA ou de seus
-            parceiros comerciais. Incluindo-se, mas não se limitando, ao envio
-            de vírus de computador, de ataques de DDOS, de acesso indevido por
-            falhas da mesma ou quaisquer outras forma e meio. De não realizar
-            divulgação indevida nos comentários do site de conteúdo de SPAM,
-            empresas concorrentes, vírus, conteúdo que não possua direitos
-            autorais ou quaisquer outros que não seja pertinente a discussão
-            daquele texto, vídeo ou imagem. Da proibição em reproduzir qualquer
-            conteúdo do site ou plataforma sem autorização expressa, podendo
-            responder civil e criminalmente pelo mesmo. Com a Política de
-            Privacidade do site, assim como tratamos os dados referentes ao
-            cadastro e visita no site, podendo a qualquer momento e forma,
-            requerer a exclusão dos mesmos, através do formulário de contato. 7.
-            DA MONETIZAÇÃO E PUBLICIDADE A EMPRESA pode alugar ou vender espaços
-            publicitários na plataforma, ou no site, diretamente aos
-            anunciantes, ou através de empresas especializadas com o Adsense
-            (Google), Taboola ou outras plataformas especializadas como o
-            EletroCriticas.com Essas publicidades não significam nenhuma forma
-            de endosso ou responsabilidade pelos mesmos, ficando o VISITANTE
-            responsável pelas compras, visitas, acessos ou quaisquer ações
-            referentes as estas empresas. Todas as propagandas no site ou
-            plataforma serão claramente destacadas como publicidade, como forma
-            de disclaimer da EMPRESA e de conhecimento do VISITANTE. Em casos de
-            compra de produtos ou serviços, será possível a devolução em até 07
-            (sete) dias, conforme o Código de Defesa do Consumidor. Estes
-            anúncios podem ser selecionados pela empresa de publicidade
-            automaticamente, conforme as visitas recentes do VISITANTE, assim
-            como baseado no seu histórico de busca, conforme as políticas de
-            acesso da plataforma. 8. DOS TERMOS GERAIS O Site irá apresentar
-            hiperlinks durante toda a sua navegação, que podem levar diretamente
-            para outra página da EMPRESA ou para sites externos. Apesar da
-            EMPRESA apenas criar links para sites externos de extrema confiança,
-            caso o usuário acesse um site externo, a EMPRESA não tem nenhuma
-            responsabilidade pelo meio, sendo uma mera indicação de
-            complementação de conteúdo, ficando o mesmo responsável pelo acesso,
-            assim como sobre quaisquer ações que venham a realizar neste site.
-            Em caso que ocorra eventuais conflitos judiciais entre o VISITANTE e
-            a EMPRESA, o foro elegido para a devida ação será o da comarca da
-            Empresa, mesmo que haja outro mais privilegiado. Este Termo de uso é
-            valido a partir de 14 de setembro de 2021.
+            A seguir estão descritas as regras aplicáveis à utilização do App
+            MeuApp (“Aplicativo”) disponibilizado pela MeuApp, sediada na cidade
+            do Rio de Janeiro, (doravante “MeuApp”), em dispositivos móveis com
+            sistemas Android e iOS, inicialmente. Ao realizar o cadastro para
+            utilização do Aplicativo, o Usuário se submeterá automaticamente às
+            regras e condições destes Termos de Uso. DEFINIÇÕES 1.1 App ou
+            aplicativo móvel: é um software desenvolvido para ser instalado em
+            dispositivo eletrônico móvel, como um telefone celular, um
+            smartphone. Este aplicativo pode ser instalado no dispositivo, se o
+            aparelho permitir e desde que baixado pelo usuário através de uma
+            loja on-line, tais como Google Play ou Apple Store. 1.2 Android: é
+            sistema operacional para dispositivos móveis, desenvolvido pelo
+            ‘’Francisco Marcello’’, liderada pelo Google. 1.3 iOS: é um sistema
+            operacional móvel da Apple Inc desenvolvido originalmente para o
+            iPhone. 1.4 Geolocalização: é um sistema capaz de localizar
+            dispositivos móveis tais como, mas não limitados a, aparelhos
+            celulares, de maneira a enviar mensagens georreferenciadas (alertas
+            geolocalizados) ao detectar quando tais terminais móveis (e portanto
+            seus usuários destinatários das mensagens georreferenciadas)
+            estiverem geograficamente próximos à um determinado ponto geográfico
+            ou dentro de uma determinada região delimitada por uma cerca virtual
+            chamada de “geofence”. Tais mensagens georreferenciadas (alertas
+            geolocalizados) podem ter várias finalidades inclusive, por exemplo,
+            o envio de mensagens promocionais de estabelecimentos comerciais.
+            1.5 Tecnologia Push: é um sistema de distribuição de conteúdo da
+            Internet em que a informação sai de um servidor para um cliente, com
+            base em uma série de parâmetros estabelecidos pelo cliente, também
+            chamado de “assinatura”. No caso deste Termo de Uso trata-se de
+            conteúdo a ser encaminhado como alertas, lembretes ou mensagens ao
+            usuário que tiver o aplicativo MeuApp instalado. 1.6 Parceiros:
+            Empresas parceiras da MeuApp ou coligadas. 1.7 Usuários: Todas as
+            pessoas, sem restrição, poderão baixar e usar o aplicativo MeuApp.
+            Os Usuários terão acesso aos recursos: Criar um círculo de cuidados,
+            convidando pessoas relacionadas ao Idoso – familiares, cuidadores e
+            profissionais de saúde (médico, fisioterapeuta, nutricionista);
+            Gerenciar uma agenda diária de cuidados, relacionada a administração
+            de medicamentos, monitoramento de medidas vitais, e outros eventos;
+            Gerenciar quem participa da equipe de cuidado e quem está
+            responsável pelo cuidado a cada momento; Emitir lembretes de tarefas
+            a serem realizadas e alertas em situações indesejáveis. DA BAIXA
+            (DOWNLOAD) DO APP MeuApp 2.1 Para que o usuário possa baixar o
+            aplicativo em seu aparelho celular, deverá se certificar se possui o
+            Android ou o iOS. Não haverá outra forma de acessar o App MeuApp que
+            não seja pelo smartphone. 2.2 No tutorial de utilização do
+            aplicativo será apresentado o aceite do “Termo de Uso e Politica de
+            Privacidade” aos usuários. O aceite do termo é obrigatório para uso
+            do aplicativo, não sendo possível prosseguir sem aceitá-lo. DA
+            GRATUIDADE E COBRANÇA DO APP MeuApp 3.1 Para a utilização e baixa
+            (download) do App MeuApp não haverá custo nenhum, tampouco para
+            eventuais atualizações. 3.2 Para a versão Premium haverá uma
+            cobrança mensal ao usuário que queira utilizá-la. Não é obrigatória
+            a utilização da versão Premium, cabendo ao usuário a decisão de
+            baixa-la para seu dispositivo móvel. DO CADASTRO E USO DO APP MeuApp
+            4.1 O cadastro para uso do Aplicativo é realizado no primeiro acesso
+            do Usuário que deverá escolher entre o login por email ou pelo seu
+            usuário já existente no Facebook. 4.2 O Usuário ao realizar o
+            cadastro sobre suas informações pessoais é o responsável pelo
+            correto preenchimento e manutenção das referidas informações. O
+            “Cadastro” é composto por dados obrigatórios tais como nome, email e
+            senha de acesso ao aplicativo MeuApp e opcionais tais como telefone
+            e foto. O usuário poderá alterar suas informações cadastrais no
+            próprio aplicativo. 4.3 Será permitido um único cadastramento por
+            Usuário, devendo o acesso, visualização e uso do Aplicativo ser
+            feito pelo Usuário em caráter pessoal e intransferível. 4.4 No caso
+            de menores de 18 (dezoito) anos ou outras pessoas que necessitem de
+            representação na forma da lei, o cadastramento deverá ser realizado
+            com a assistência dos pais ou dos representantes legais. 4.5 Não é
+            de responsabilidade da MeuApp o caso de um Usuário se utilizar do
+            cadastro de outro Usuário. 4.6 Toda e qualquer ação executada ou
+            conteúdo publicado pelo Usuário durante o uso do aplicativo será de
+            sua exclusiva e integral responsabilidade, devendo isentar e
+            indenizar a MeuApp de quaisquer reclamações, prejuízos, perdas e
+            danos causados, em decorrência de tais ações ou manifestações. 4.7 O
+            Usuário autoriza a MeuApp ou terceiros por ela indicados, a
+            utilizar, por prazo indeterminado, as informações fornecidas no ato
+            do cadastro e durante o uso do aplicativo, para fins estatísticos e
+            envio de material publicitário, newsletters, informes, etc . 4.8 A
+            MeuApp se reserva o direito de incluir, excluir ou alterar os
+            conteúdos e funcionalidades do aplicativo, bem como suspendê-lo
+            temporariamente ou cancelá-lo, a qualquer momento, independentemente
+            de aviso prévio ao Usuário. Da mesma forma, poderá modificar estes
+            Termos de Uso, cuja versão mais recente estará sempre disponível
+            para consulta no próprio aplicativo. 4.9 O Usuário é exclusivamente
+            responsável por todo e qualquer conteúdo por ele enviado ou
+            publicado através do Aplicativo. Ao enviar/publicar o conteúdo, o
+            Usuário garante que ele não viola quaisquer direitos de terceiros ou
+            leis vigentes e concorda em manter a MeuApp isenta de quaisquer
+            reclamações judiciais ou extrajudiciais de terceiros. 4.10 A MeuApp
+            se exime de toda e qualquer responsabilidade pelos danos e prejuízos
+            de qualquer natureza que possam decorrer do acesso, interceptação,
+            eliminação, alteração, modificação ou manipulação, por terceiros não
+            autorizados, dos dados do usuário durante a utilização do
+            aplicativo. 4.11 As informações solicitadas ao Usuário no momento do
+            cadastro serão utilizadas pela MeuApp somente para os fins previstos
+            nestes Termos de Uso e em nenhuma circunstância, tais informações
+            serão cedidas ou compartilhadas com terceiros, exceto por ordem
+            judicial ou de autoridade competentes. RENÚNCIA A GARANTIAS E
+            LIMITAÇÃO DE RESPONSABILIDADE 5.1. A MeuApp responde pelos seus
+            serviços e pelo gerenciamento do aplicativo em relação aos usuários,
+            porém, a qualidade e quantidade dos produtos e serviços oferecidos
+            por nossos parceiros é de responsabilidade exclusiva destes últimos.
+            5.2. O Usuário é responsável pela(s) atualização(ões) do App MeuApp.
+            Caso não o faça e tiver problema na sua utilização, a MeuApp estará
+            isenta de responsabilidade por quaisquer perdas e danos. 5.3 a
+            MeuApp não declara ou garante que o Aplicativo será livre de perdas,
+            defeitos, ataques, vírus, interferências, atividades de hackers ou
+            outra intrusão de segurança, e a MeuApp renuncia a qualquer
+            responsabilidade com relação a isso por ser culpa de terceiros. DA
+            PROPRIEDADE INTELECTUAL 6.1. O Usuário concorda que os serviços
+            prestados pela MeuApp, incluindo, sem limitação, o Aplicativo com
+            interface de usuário, integração com outros serviços ou aplicativos,
+            scripts e software utilizados para implementá-lo contêm informações
+            exclusivas de propriedade da MeuApp e/ou seus licenciantes e são
+            protegidos pelas leis de propriedade intelectual e outras leis
+            aplicáveis, incluindo, sem limitação, direitos autorais. 6.2. O
+            Usuário concorda que não utilizará tais informações ou materiais
+            exclusivos de nenhuma forma, exceto para uso dos Serviços em
+            conformidade com este Termo de Uso. Nenhuma parte dos serviços
+            poderá ser reproduzida de qualquer forma ou por qualquer meio,
+            exceto conforme expressamente permitido por estes termos. 6.3. Sem
+            prejuízo de qualquer disposição deste Termo, a MeuApp e seus
+            representantes se reservam o direito de alterar, suspender, remover
+            ou desabilitar o acesso ao aplicativo, conteúdos ou outros
+            materiais, a qualquer momento, sem aviso ou ônus. Em hipótese
+            alguma, a MeuApp será responsabilizada por ter realizado tais
+            alterações. A MeuApp poderá ainda impor limites sobre o uso de ou
+            acesso a determinadas funcionalidades ou partes do serviço do
+            aplicativo, em qualquer caso e sem aviso ou responsabilidade. 6.4.
+            Todos os direitos autorais relacionados ao App Gero60 e software
+            relacionados são de propriedade da MeuApp ou seus licenciantes, que
+            reservam todos os seus direitos previstos em lei e equidade. A
+            utilização do software ou qualquer parte dos serviços do App MeuApp,
+            exceto para o uso permitido neste termo, é estritamente proibida e
+            viola os direitos de propriedade intelectual de terceiros, podendo
+            sujeitá-lo a penalidades civis e criminais, incluindo possíveis
+            danos patrimoniais por violação de direitos autorais. 6.5. A MeuApp,
+            o logotipo da MeuApp, a marca MeuApp, e outras marcas, marcas de
+            serviço, gráficos e logos usados em relação ao App MeuApp são marcas
+            registradas da MeuApp no Brasil e/ou em outro país. O Usuário não
+            recebe qualquer direito ou licença com relação a quaisquer das
+            marcas mencionadas e ao uso destas. DA POLITICA DE PRIVACIDADE 7.1.
+            Informações pessoais: Os dados pessoais inseridos no Aplicativo
+            serão armazenados em nossas bases, em ambiente seguro, garantindo o
+            sigilo e confidencialidade dos mesmos. 7.2. Estatísticas de
+            audiência: As informações relativas à audiência, como por exemplo,
+            tráfego de Sites, navegação dos Usuários e páginas mais visitadas,
+            destina-se a levantamentos estatísticos, visando o aprimoramento
+            contínuo de nossos aplicativos e melhor atendimento das necessidades
+            de seus Usuários. 7.3. É importante ressaltar que o Usuário deve
+            tomar certos cuidados ao acessar a área segura, tais como: (i) o uso
+            de senhas sequenciais ou que não contenham dados pessoais e (ii)
+            troca de senha de forma periodica. COMPARTILHAMENTO DE INFORMAÇÃO
+            8.1. O usuário, por meio deste regulamento, concorda e aceita que a
+            MeuApp poderá compartilhar essas informações com terceiros se
+            requerido pela lei ou por decreto judicial. Para ajudar a fornecer
+            nossos serviços ocasionalmente fornecemos informações a outras
+            empresas que trabalham conosco, como, por exemplo: Proteção ou
+            defesa dos nossos direitos legais ou de propriedade, ou de nossos
+            Usuários. Personalização do conteúdo e anúncios de acordo com perfil
+            e preferências dos Usuários. Fornecimento dos programas de
+            fidelização, base de Usuários, perfis e padrões de uso. 8.2. Suas
+            escolhas e informações pessoais podem ser atualizadas a qualquer
+            momento em sua conta. Para fazer quaisquer atualizações ou
+            alterações, revisite nosso Aplicativo. 8.3. A MeuApp irá, de tempos
+            em tempos, à medida que os usuários forem alterando as suas
+            informações, ou por iniciativa da MeuApp, coletar informação que
+            pode ser utilizada para melhoria do próprio aplicativo. Esta
+            informação será armazenada de forma anônima e não será associada a
+            seu nome ou Conta. 8.4 A Gero60 não vende ou aluga as informações
+            pessoais dos usuários para terceiros. DO CANCELAMENTO 9.1 O usuário
+            poderá, a qualquer tempo, desinstalar o App MeuApp, sem que isto
+            gere para qualquer das partes o direito de indenização ou qualquer
+            outra quantia. 9.2 Sem prejuízo das demais sanções legais e daquelas
+            aqui previstas, a MeuApp poderá, a seu critério, notificar,
+            suspender e/ ou cancelar o cadastro do Usuário, rescindir o presente
+            Termo e/ ou Conta, revogar a licença do software, impedir o acesso
+            ao aplicativo (ou qualquer parte dele) a qualquer tempo, definitiva
+            ou temporariamente, nos seguintes casos, exemplificando, mas não se
+            limitando: a) Descumprimento de quaisquer disposições deste Termo de
+            Uso; b) Verificação de cadastro duplicado; c) Verificação de novo
+            cadastro realizado por Usuário que teve seu cadastro cancelado e/ou
+            suspenso; d) Constatação de fraude ou tentativa de fraude; e/ ou, e)
+            Fornecimento de informações solicitadas incorretas e/ ou inverídicas
+            ou ainda se negar a prestar eventuais informações adicionais
+            solicitadas pelo Site. 9.3. Com o término, por qualquer motivo, da
+            relação entre a MeuApp e o Usuário. 9.4. A MeuApp reserva o direito
+            de alterar, suspender ou interromper o App MeuApp (ou qualquer parte
+            ou conteúdo) a qualquer tempo, com ou sem aviso prévio, e a MeuApp
+            não será responsável perante o Usuário ou qualquer terceiro caso
+            exerça tais direitos. DISPOSIÇÕES GERAIS 10.1 A MeuApp reserva o
+            direito de, a qualquer tempo, modificar o presente Termo de Uso e
+            Política de Privacidade e impor termos ou condições novos ou
+            adicionais sobre seu uso do aplicativo. Tais modificações e termos e
+            condições adicionais terão eficácia imediata e serão incorporados a
+            este Termo. 10.2 Se qualquer termo ou condição do nosso Acordo for
+            considerado inválido, ilegal ou inaplicável, as partes concordam que
+            tal termo ou condição poderá ser excluído e o restante do Acordo
+            deverá continuar em vigorando por prazo indeterminado. 10.3 A MeuApp
+            poderá, sem prévio aviso, bloquear e cancelar o acesso ao aplicativo
+            quando verificar que o Usuário praticou algum ato ou mantenha
+            conduta que (i) viole as leis e regulamentos federais, estaduais
+            e/ou municipais, (ii) contrarie as regras destes Termos de Uso, ou
+            (iii) viole os princípios da moral e dos bons costumes. 10.4 Este
+            Termo de Uso e Política de Privacidade serão regidos e interpretados
+            de acordo com as leis do Brasil. Para dirimir eventuais dúvidas
+            acerca do presente instrumento, bem como qualquer evento relacionado
+            à utilização de nossos serviços, fica eleito o Foro Central, da
+            Comarca da Capital do Estado do Rio de Janeiro para dirimir
+            quaisquer questões decorrentes destes Termos de Uso.
             <Checkbox mr="2" mt="2" value="two">
               Aceito os termos
             </Checkbox>

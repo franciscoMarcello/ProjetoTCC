@@ -54,7 +54,6 @@ const Details: React.FC = () => {
   const navigation = useNavigation();
   const [chamado, setChamado] = useState<ChamadosProps[]>([]);
   const { user, Logout } = useContext(AuthContext);
-  const [data, setDataformatada] = useState("");
 
   async function teste() {
     try {
@@ -138,6 +137,22 @@ const Details: React.FC = () => {
               />
             </Box>
             <Heading fontSize="xl" pl="2" pt="3" pb="3" color="white">
+              Titulo do chamado
+            </Heading>
+            <Box
+              mt="2"
+              pl="2"
+              borderRadius="5"
+              height="auto"
+              backgroundColor="muted.800"
+              mb="1"
+            >
+              <Text color="white" fontSize={20}>
+                {item.title}
+              </Text>
+            </Box>
+            <Divider my="3" thickness="2" bg="#580ef6" />
+            <Heading fontSize="xl" pl="2" pt="3" pb="3" color="white">
               Informações do Chamado
             </Heading>
             <Box
@@ -149,22 +164,32 @@ const Details: React.FC = () => {
               mb="1"
             >
               <Text color="white" fontSize={20}>
-                Titulo: {item.title}
-              </Text>
-
-              <Text color="white" fontSize={20}>
-                Descrição: {item.description}
-              </Text>
-
-              <Text color="white" fontSize={20}>
                 Status: {item.status}
               </Text>
+              {item.tecnic !== null && (
+                <Text color="white" fontSize={20}>
+                  Tecnico: {item.tecnic}
+                </Text>
+              )}
 
               <Text color="white" fontSize={20}>
-                Tecnico: {item.tecnic}
-              </Text>
-              <Text color="white" fontSize={20}>
                 Categoria: {item.category}
+              </Text>
+            </Box>
+            <Divider my="3" thickness="2" bg="#580ef6" />
+            <Heading fontSize="xl" pl="2" pt="2" pb="3" color="white">
+              Descrição do problema
+            </Heading>
+            <Box
+              mt="2"
+              pl="2"
+              borderRadius="5"
+              height="auto"
+              backgroundColor="muted.800"
+              mb="1"
+            >
+              <Text color="white" fontSize={20}>
+                {item.description}
               </Text>
             </Box>
             <Divider my="3" thickness="2" bg="#580ef6" />
@@ -204,19 +229,22 @@ const Details: React.FC = () => {
               mb="5"
             >
               <Text color="white" fontSize={20}>
-                Cidade: {item.customer.Endereco.cep}
+                Cidade: {item.customer.Endereco[0].city}
               </Text>
 
               <Text color="white" fontSize={20}>
-                Rua: {item.customer.Endereco.street}
+                Rua: {item.customer.Endereco[0].street}
               </Text>
 
               <Text color="white" fontSize={20}>
-                Número: {item.customer.Endereco.number}
+                Número: {item.customer.Endereco[0].number}
+              </Text>
+              <Text color="white" fontSize={20}>
+                CEP: {item.customer.Endereco[0].cep}
               </Text>
 
               <Text color="white" fontSize={20}>
-                Complemento: {item.customer.Endereco.complement}
+                Complemento: {item.customer.Endereco[0].complement}
               </Text>
             </Box>
             {user.id === item.customerId &&

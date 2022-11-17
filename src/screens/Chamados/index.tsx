@@ -14,6 +14,8 @@ import { Input } from "../../components/input";
 import api from "../../service/auth";
 
 import AuthContext from "../../contexts/auth";
+import { useNavigation } from "@react-navigation/native";
+import { Alerta } from "../../components/Alerta";
 
 const Chamado: React.FC = () => {
   const { user } = useContext(AuthContext);
@@ -23,6 +25,7 @@ const Chamado: React.FC = () => {
   const [cateegory, setCategory] = useState("");
   const [imageAvatar, setImageAvatar] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState("");
+  const navigation = useNavigation();
 
   async function AddChamado() {
     try {
@@ -39,11 +42,11 @@ const Chamado: React.FC = () => {
         customerId: user.id,
       });
 
-      console.log(description, title, cateegory, user.id, imageAvatar);
       setDescription(""), setTitle(""), setCategory(""), setAvatarUrl("");
+
+      navigation.goBack();
     } catch (err: any) {
       setError(err.response.data.message);
-      alert(err.response.data.message);
     }
   }
 
@@ -57,9 +60,9 @@ const Chamado: React.FC = () => {
 
     console.log(result);
 
-    if (!result.cancelled) {
-      setAvatarUrl(result.uri);
-      setImageAvatar(result.uri);
+    if (!result.canceled) {
+      setAvatarUrl(result.assets[0].uri);
+      setImageAvatar(result.assets[0].uri);
     }
   };
 
@@ -129,12 +132,13 @@ const Chamado: React.FC = () => {
           <Select.Item label="Design" value="Design" />
         </Select>
       </Box>
-      <Button mb={3} minWidth="300" onPress={pickImage}>
-        Selecione imagem
-      </Button>
 
-      {avatarUrl && (
+      {avatarUrl ? (
         <Image source={{ uri: avatarUrl }} size={250} alt="Teste" mb={3} />
+      ) : (
+        <Button mb={3} minWidth="300" onPress={pickImage}>
+          Selecione imagem
+        </Button>
       )}
       <Box>
         <Button backgroundColor="#580ef6" onPress={AddChamado}>

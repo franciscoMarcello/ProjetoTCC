@@ -7,7 +7,7 @@ import User from "../screens/User";
 import Endereco from "../screens/User/Endereco";
 import Details from "../screens/Chamados/Details";
 import CustomDrawer from "../components/CustomDrawer";
-import { AntDesign, Feather } from "@expo/vector-icons";
+
 import Historico from "../screens/Chamados/Historico";
 import Avaliacao from "../screens/Avaliacao";
 
@@ -60,33 +60,9 @@ const AppRoutes: React.FC = () => (
     }}
     drawerContent={(props) => <CustomDrawer {...props} />}
   >
-    <Drawer.Screen
-      options={{
-        drawerIcon: ({ color }) => {
-          <AntDesign name="API" size={22} color={color} />;
-        },
-      }}
-      name="Home"
-      component={MyHome}
-    />
-    <Drawer.Screen
-      options={{
-        drawerIcon: ({ color }) => {
-          <AntDesign name="API" size={22} color={color} />;
-        },
-      }}
-      name="Novo Chamado"
-      component={Chamados}
-    />
-    <Drawer.Screen
-      name="User"
-      component={MyUser}
-      options={{
-        drawerIcon: ({ color }) => {
-          <Feather name="settings" size={24} color="black" />;
-        },
-      }}
-    />
+    <Drawer.Screen name="Home" component={MyHome} />
+    <Drawer.Screen name="Novo Chamado" component={Chamados} />
+    <Drawer.Screen name="User" component={MyUser} />
   </Drawer.Navigator>
 );
 export default AppRoutes;

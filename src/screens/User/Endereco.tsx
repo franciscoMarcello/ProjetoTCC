@@ -12,7 +12,6 @@ import {
 import { Input } from "../../components/input";
 import api from "../../service/auth";
 
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
 import { useNavigation } from "@react-navigation/native";
@@ -30,6 +29,7 @@ const Endereco: React.FC = () => {
       });
 
       setStreet(""), setCity(""), setCep(""), setNumber(""), setComplemento("");
+      navigation.goBack();
     } catch (err) {
       console.log(err);
     }
@@ -41,6 +41,7 @@ const Endereco: React.FC = () => {
   const [cep, setCep] = useState("");
   const [number, setNumber] = useState("");
   const [complemento, setComplemento] = useState("");
+  const navigation = useNavigation();
 
   return (
     <Center

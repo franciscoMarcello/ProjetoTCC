@@ -16,7 +16,7 @@ import {
 } from "native-base";
 import { ItemClick } from "native-base/lib/typescript/components/composites/Typeahead/useTypeahead/types";
 import React, { useContext, useEffect, useState } from "react";
-
+import { formatDate } from "../../utils/FormatDate";
 import AuthContext from "../../contexts/auth";
 import api from "../../service/auth";
 
@@ -56,7 +56,7 @@ const Historico: React.FC = () => {
         comentario: comentario,
       });
       setComentario("");
-      alert("deu certo");
+      alert("Comentario enviado");
       navigation.goBack();
     } catch (err: any) {
       alert(err.response.data.message);
@@ -70,7 +70,6 @@ const Historico: React.FC = () => {
         },
       });
       setComentarios(response.data);
-      console.log(response.data);
     }
     comentarios();
   }, [isFocused]);
@@ -116,7 +115,7 @@ const Historico: React.FC = () => {
                       {item.comentario}
                     </Text>
                     <Text color="white" fontSize="12">
-                      {item.created_at}
+                      {formatDate(item.created_at)}
                     </Text>
                   </Box>
                 </Box>
@@ -134,7 +133,7 @@ const Historico: React.FC = () => {
                       {item.comentario}
                     </Text>
                     <Text color="white" bold fontSize="12">
-                      {item.created_at}
+                      {formatDate(item.created_at)}
                     </Text>
                   </Box>
                   <Box ml="3" alignItems="center">

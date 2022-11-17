@@ -1,48 +1,51 @@
-import { Button, Center, Checkbox, Modal } from "native-base";
+import { AlertDialog, Button, Center, Checkbox, Modal } from "native-base";
 import React, { useContext, useState } from "react";
 import AuthContext from "../contexts/auth";
 import api from "../service/auth";
 
 export function ModalAvaliacao() {
   const { user } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = React.useState(false);
 
+  const onClose = () => setIsOpen(false);
+
+  const cancelRef = React.useRef(null);
   const [showModal, setShowModal] = useState(false);
+
   return (
     <Center>
-      <Button fontSize="sm" mt="2" onPress={() => setShowModal(true)}>
-        Avaliar
+      <Button colorScheme="danger" onPress={() => setIsOpen(!isOpen)}>
+        Delete Customer
       </Button>
-      <Modal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        _backdrop={{
-          _dark: {
-            bg: "coolGray.800",
-          },
-          bg: "coolGray.800",
-        }}
+      <AlertDialog
+        leastDestructiveRef={cancelRef}
+        isOpen={isOpen}
+        onClose={onClose}
       >
-        <Modal.Content maxWidth="350" maxH="312">
-          <Modal.CloseButton />
-          <Modal.Header>Termo de uso</Modal.Header>
-          <Modal.Body>Deseja avaliar o atendimento</Modal.Body>
-
-          <Modal.Footer justifyContent="center">
+        <AlertDialog.Content>
+          <AlertDialog.CloseButton />
+          <AlertDialog.Header>Delete Customer</AlertDialog.Header>
+          <AlertDialog.Body>
+            This will remove all data relating to Alex. This action cannot be
+            reversed. Deleted data can not be recovered.
+          </AlertDialog.Body>
+          <AlertDialog.Footer>
             <Button.Group space={2}>
               <Button
-                variant="ghost"
-                colorScheme="blueGray"
-                onPress={() => {
-                  setShowModal(false);
-                }}
+                variant="unstyled"
+                colorScheme="coolGray"
+                onPress={onClose}
+                ref={cancelRef}
               >
-                Não
+                Cancel
               </Button>
-              <Button>Sim</Button>
+              <Button colorScheme="danger" onPress={onClose}>
+                Delete
+              </Button>
             </Button.Group>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>
+          </AlertDialog.Footer>
+        </AlertDialog.Content>
+      </AlertDialog>
     </Center>
   );
 }

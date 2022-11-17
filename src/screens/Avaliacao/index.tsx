@@ -41,6 +41,9 @@ const Avaliacao: React.FC = () => {
     alert("Obrigado por avaliar!");
     navigation.navigate("Dash");
   }
+  function naoAvaliar() {
+    navigation.navigate("Dash");
+  }
   return (
     <Box bg="#1a1c22" flex="1" alignItems="center" justifyContent="center">
       <Image
@@ -81,12 +84,18 @@ const Avaliacao: React.FC = () => {
         })}
         <Text></Text>
       </Box>
+
       <Text color="white">
         {defaultRating} / {Math.max.apply(null, maxRating)}
       </Text>
-      <Button bg="#580ef6" onPress={enviarAvaliacao} mt="2">
-        Avaliar
-      </Button>
+      <Box flexDirection="row">
+        <Button bg="#580ef6" onPress={enviarAvaliacao} mt="2" mr="2">
+          Avaliar
+        </Button>
+        <Button bg="#da2c38" onPress={naoAvaliar} mt="2">
+          Não avalaiar
+        </Button>
+      </Box>
     </Box>
   );
 };
