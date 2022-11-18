@@ -20,11 +20,12 @@ type EnderecoProps = {
 };
 
 import api from "../../service/auth";
-import { FontAwesome5 } from "@expo/vector-icons";
+
 import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { Termo } from "../../components/Modal";
+import { ModalAvaliacao } from "../../components/ModalAvaliacao";
 
 const User: React.FC = () => {
   const { user } = useContext(AuthContext);
@@ -49,19 +50,7 @@ const User: React.FC = () => {
     }
     me();
   }, [isFocused]);
-  async function delEndereco(id: string) {
-    console.log(id);
-    try {
-      const response = await api.delete("/customer/deleteEndereco", {
-        params: {
-          id: id,
-        },
-      });
-      alert(response.data.message);
-    } catch (err: any) {
-      alert(err.response.data.message);
-    }
-  }
+
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -153,9 +142,14 @@ const User: React.FC = () => {
                 Rua: {item.street}
               </Text>
               <Box flexDirection="row">
-                <Button variant="ghost" onPress={() => delEndereco(item.id)}>
-                  <FontAwesome5 name="trash" size={20} color="#9f1239" />
-                </Button>
+                <ModalAvaliacao
+                  id={item.id}
+                  streetAtual={item.street}
+                  cityAtual={item.city}
+                  cepAtual={item.cep}
+                  numberAtual={item.number}
+                  complementAtual={item.complement}
+                />
               </Box>
             </Box>
 
