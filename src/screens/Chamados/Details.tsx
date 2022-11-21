@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-
+import { Image } from "react-native";
 import {
   Button,
   Box,
   Text,
   Heading,
-  Image,
   ScrollView,
   StatusBar,
   Divider,
@@ -125,15 +124,15 @@ const Details: React.FC = () => {
           <Box key={item.id}>
             <Box alignItems="center">
               <Image
-                bg="white"
                 source={{
-                  uri: "http://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png",
+                  uri: `http://192.168.1.2:5000/files/${item.image}`,
                 }}
-                alt="Alternate Text"
-                size="48"
-                w="64"
-                resizeMode="cover"
-                rounded="4"
+                style={{
+                  width: 350,
+                  height: 200,
+                  resizeMode: "cover",
+                  borderRadius: 8,
+                }}
               />
             </Box>
             <Heading fontSize="xl" pl="2" pt="3" pb="3" color="white">

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 
-import { Text, Box, Image, Heading, Button } from "native-base";
+import { Text, Box, Heading, Button } from "native-base";
+import { Image } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -19,13 +20,15 @@ const components: React.FC = (props) => {
       >
         <Box alignItems="center">
           <Image
-            alt={user.name}
             source={{
-              uri: "http://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png",
+              uri: `http://192.168.1.2:5000/files/${user.picture}`,
             }}
-            size="32"
-            rounded={100}
-            resizeMode="cover"
+            style={{
+              width: 150,
+              height: 150,
+              resizeMode: "cover",
+              borderRadius: 75,
+            }}
           />
         </Box>
         <Heading fontSize="2xl" pl="3" pt="2" mb="8" color="white">

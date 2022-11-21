@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Box, Button, Heading, Text, Image } from "native-base";
+import { Box, Button, Heading, Text } from "native-base";
+import { Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { AntDesign, MaterialIcons, Feather } from "@expo/vector-icons";
 
@@ -25,18 +26,32 @@ import { StatusBar } from "expo-status-bar";
 import AuthContext from "../../contexts/auth";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { Termo } from "../../components/Modal";
-import { ModalAvaliacao } from "../../components/ModalAvaliacao";
+import { ModalAvaliacao } from "../../components/ModalEndereco";
+import Avaliacao from "../Avaliacao";
 
 const User: React.FC = () => {
   const { user } = useContext(AuthContext);
 
   const [dados, setDados] = useState<DadosProps[]>([]);
   const [Enderecos, setEnderecos] = useState<EnderecoProps[]>([]);
+  const [avaliacao, setAvaliacao] = useState("");
+  const [picture, setPicture] = useState(null);
+  const [imageAvatar, setImageAvatar] = useState("");
 
-  const [picture, setPicture] = useState(user.picture || null);
-  const URL = "http://192.168.1.16:5000/customer/updateAvatar";
   const navigation = useNavigation();
   const isFocused = useIsFocused();
+  useEffect(() => {
+    async function avaliacaoMe() {
+      const response = await api.get("/customer/avaliacao", {
+        params: {
+          customerId: user.id,
+        },
+      });
+
+      setAvaliacao(response.data.nota);
+    }
+    avaliacaoMe();
+  }, [isFocused]);
   useEffect(() => {
     async function me() {
       const response = await api.get("/customer/me", {
@@ -47,6 +62,8 @@ const User: React.FC = () => {
 
       setDados(response.data);
       setEnderecos(response.data.Endereco);
+      setPicture(response.data.picture);
+      user.picture = picture!;
     }
     me();
   }, [isFocused]);
@@ -59,28 +76,22 @@ const User: React.FC = () => {
       quality: 1,
     });
     if (!result.canceled) {
-      setPicture(result.assets[0].uri);
+      setImageAvatar(result.assets[0].uri);
       const formData = new FormData();
+
       formData.append("picture", {
         uri: result.assets[0].uri,
-        type: result.assets[0].type,
-        name: result.assets[0].fileName,
       });
       formData.append("customerId", user.id);
-
-      let res = await fetch(URL, {
-        method: "patch",
-        body: formData,
-        headers: {
-          "Content-type": "multipart/form-data",
-        },
-      });
-      let responseJson = await res.json();
-      if (responseJson.status == 1) {
-        alert("Upload Successful");
-      }
-    } else {
-      alert("Please Select File first");
+      console.log(formData);
+      await api
+        .patch("/customer/updateAvatar", formData)
+        .then((response) => {
+          alert(response);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -89,16 +100,32 @@ const User: React.FC = () => {
       <StatusBar style="light" />
       <Box alignItems="center">
         <Button variant="ghost" onPress={pickImage}>
-          <Image
-            bg="white"
-            source={{
-              uri: picture,
-            }}
-            alt="Alternate Text"
-            size="48"
-            rounded={100}
-            resizeMode="cover"
-          />
+          {imageAvatar === "" ? (
+            <Image
+              source={{
+                uri: `http://192.168.1.2:5000/files/${picture}`,
+              }}
+              style={{
+                width: 150,
+                height: 150,
+                resizeMode: "cover",
+                borderRadius: 75,
+              }}
+            />
+          ) : (
+            <Image
+              source={{
+                uri: imageAvatar,
+              }}
+              style={{
+                width: 150,
+                height: 150,
+                resizeMode: "cover",
+                borderRadius: 75,
+              }}
+            />
+          )}
+
           <Box alignItems="flex-end">
             <Feather name="edit-2" size={24} color="white" />
           </Box>
@@ -129,7 +156,7 @@ const User: React.FC = () => {
             <AntDesign name="star" size={24} color="#daa520" />
 
             <Text color="white" fontSize="16" ml="1">
-              4,2
+              {avaliacao}
             </Text>
           </Box>
         )}

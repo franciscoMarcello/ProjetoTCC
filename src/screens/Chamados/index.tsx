@@ -12,7 +12,7 @@ import {
 } from "native-base";
 import { Input } from "../../components/input";
 import api from "../../service/auth";
-
+import { AntDesign } from "@expo/vector-icons";
 import AuthContext from "../../contexts/auth";
 import { useNavigation } from "@react-navigation/native";
 import { Alerta } from "../../components/Alerta";
@@ -57,8 +57,6 @@ const Chamado: React.FC = () => {
       aspect: [4, 3],
       quality: 1,
     });
-
-    console.log(result);
 
     if (!result.canceled) {
       setAvatarUrl(result.assets[0].uri);
@@ -134,7 +132,14 @@ const Chamado: React.FC = () => {
       </Box>
 
       {avatarUrl ? (
-        <Image source={{ uri: avatarUrl }} size={250} alt="Teste" mb={3} />
+        <Box>
+          <Box mb="2" alignItems="flex-end">
+            <Button variant="ghost" onPress={() => setAvatarUrl("")}>
+              <AntDesign name="closecircleo" size={24} color="white" />
+            </Button>
+          </Box>
+          <Image source={{ uri: avatarUrl }} size={250} alt="Teste" mb={3} />
+        </Box>
       ) : (
         <Button mb={3} minWidth="300" onPress={pickImage}>
           Selecione imagem
