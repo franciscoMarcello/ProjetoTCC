@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Box, Button, Heading, Text } from "native-base";
-import { Image } from "react-native";
+import { Alert, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { AntDesign, MaterialIcons, Feather } from "@expo/vector-icons";
 
@@ -66,7 +66,7 @@ const User: React.FC = () => {
       user.picture = picture!;
     }
     me();
-  }, [isFocused]);
+  }, [isFocused, picture]);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -80,14 +80,18 @@ const User: React.FC = () => {
       const formData = new FormData();
 
       formData.append("picture", {
-        uri: result.assets[0].uri,
+        uri: imageAvatar,
+        name: `Avatar${user.id}`,
+        type: "image/jpg",
       });
       formData.append("customerId", user.id);
       console.log(formData);
       await api
         .patch("/customer/updateAvatar", formData)
         .then((response) => {
-          alert(response);
+          Alert.alert("Upload com sucesso", "Imagem enviada");
+          setImageAvatar("");
+          user.picture = picture!;
         })
         .catch((err) => {
           console.log(err);
@@ -100,11 +104,13 @@ const User: React.FC = () => {
       <StatusBar style="light" />
       <Box alignItems="center">
         <Button variant="ghost" onPress={pickImage}>
-          {imageAvatar === "" ? (
+          {picture === null ? (
             <Image
-              source={{
-                uri: `http://192.168.1.2:5000/files/${picture}`,
-              }}
+              source={
+                imageAvatar !== ""
+                  ? { uri: imageAvatar }
+                  : require("../../assets/images/baixados.png")
+              }
               style={{
                 width: 150,
                 height: 150,
@@ -115,7 +121,7 @@ const User: React.FC = () => {
           ) : (
             <Image
               source={{
-                uri: imageAvatar,
+                uri: `http://192.168.1.15:5000/files/${picture}`,
               }}
               style={{
                 width: 150,
@@ -151,7 +157,7 @@ const User: React.FC = () => {
         ) : (
           <Termo />
         )}
-        {user.tecnicId && (
+        {user.tecnicId && avaliacao !== null && (
           <Box flexDirection="row" alignItems="center">
             <AntDesign name="star" size={24} color="#daa520" />
 

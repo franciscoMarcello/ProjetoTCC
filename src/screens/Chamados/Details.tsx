@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image } from "react-native";
+import { Alert, Image } from "react-native";
 import {
   Button,
   Box,
@@ -72,9 +72,9 @@ const Details: React.FC = () => {
         customerId: user.id,
         chamadoId: ChamadoId,
       });
-      alert("Solução aprovada!");
+      Alert.alert("Solução aprovada", "Voce aprovou a solução com sucesso!");
 
-      navigation.navigate("Avaliacao", { ChamadoId: ChamadoId });
+      createTwoButtonAlert();
     } catch (err: any) {
       alert(err.response.data.message);
     }
@@ -85,7 +85,8 @@ const Details: React.FC = () => {
         customerId: user.id,
         chamadoId: ChamadoId,
       });
-      alert("Solução recusada!");
+      Alert.alert("Solução recusada", "Voce recusou a solução com sucesso!");
+      navigation.navigate("Dash");
     } catch (err: any) {
       alert(err.response.data.message);
     }
@@ -96,7 +97,8 @@ const Details: React.FC = () => {
         customerId: user.id,
         chamadoId: ChamadoId,
       });
-      alert("Voce enviou a solução");
+      Alert.alert("Solução enviada", "Voce enviou a solução com sucesso!");
+      navigation.navigate("Dash");
     } catch (err: any) {
       alert(err.response.data.message);
     }
@@ -113,10 +115,29 @@ const Details: React.FC = () => {
     }
     getChamadoId();
   }, []);
+
+  const createTwoButtonAlert = () =>
+    Alert.alert(
+      "Avaliação",
+      `Deseja avaliar ${chamado.map((item) => item.tecnic)}?`,
+      [
+        {
+          text: "Não",
+          onPress: () => navigation.navigate("Dash"),
+
+          style: "default",
+        },
+        {
+          text: "Sim",
+          onPress: () =>
+            navigation.navigate("Avaliacao", { ChamadoId: ChamadoId }),
+        },
+      ]
+    );
   return (
     <ScrollView w="auto" h="80" bg="#1a1c22">
       <StatusBar barStyle="light-content" />
-      <Box bg="#1a1c22" flex="1">
+      <Box bg="#1a1c22" flex="1" alignItems="center">
         <Heading fontSize="2xl" p="4" pb="3" color="white">
           Detalhes do chamado
         </Heading>
@@ -125,7 +146,7 @@ const Details: React.FC = () => {
             <Box alignItems="center">
               <Image
                 source={{
-                  uri: `http://192.168.1.2:5000/files/${item.image}`,
+                  uri: `http://192.168.1.15:5000/files/${item.image}`,
                 }}
                 style={{
                   width: 350,
@@ -266,9 +287,9 @@ const Details: React.FC = () => {
                 </Box>
               )}
             {user.id === item.tecnicId && item.status === "Em atendimento" && (
-              <Box flexDirection="row" justifyContent="center">
+              <Box justifyContent="center" alignItems="center">
                 <Box mt="2">
-                  <Button bg="#32965d" onPress={Fechar} width="32" mr="3">
+                  <Button bg="#32965d" onPress={Fechar} width="48">
                     <Text color="white" fontSize={16}>
                       Enviar solução
                     </Text>
@@ -297,7 +318,9 @@ const Details: React.FC = () => {
                     navigation.navigate("Historico", { ChamadoId: item.id })
                   }
                 >
-                  Fazer comentario
+                  <Text fontSize={16} color="white">
+                    Fazer comentario
+                  </Text>
                 </Button>
               </Box>
             )}

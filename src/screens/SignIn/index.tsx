@@ -31,11 +31,10 @@ const SignIn: React.FC = () => {
       <StatusBar style="light" />
       <Box alignItems="center" mb="5">
         <Image
-          source={require("../../assets/images/logo.png_300.png")}
+          source={require("../../assets/images/logo_transparent.png")}
           alt="logo"
-          size={200}
+          size={300}
           resizeMode="contain"
-          rounded={100}
         />
       </Box>
 

@@ -5,6 +5,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import api from "../../service/auth";
 import { ChamadosProps } from "../Chamados/Details";
 import AuthContext from "../../contexts/auth";
+import { color } from "react-native-reanimated";
 type ParamsProps = {
   ChamadoId: string;
 };
@@ -47,14 +48,9 @@ const Avaliacao: React.FC = () => {
   return (
     <Box bg="#1a1c22" flex="1" alignItems="center" justifyContent="center">
       <Image
-        bg="white"
-        source={{
-          uri: "http://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png",
-        }}
-        alt="Alternate Text"
-        size="48"
-        rounded={100}
-        resizeMode="cover"
+        source={require("../../assets/images/suporte-tecnico.png")}
+        style={{ width: 70, height: 70 }}
+        alt="Imagem do tecnico"
       />
       {chamado.map((item) => (
         <Text color="white" fontSize="xl" mt="2" key={item.id}>

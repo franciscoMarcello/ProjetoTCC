@@ -3,18 +3,9 @@ import {
   useNavigation,
   useRoute,
 } from "@react-navigation/native";
-import {
-  Box,
-  TextArea,
-  Button,
-  Text,
-  FlatList,
-  HStack,
-  VStack,
-  Avatar,
-  Heading,
-} from "native-base";
-import { ItemClick } from "native-base/lib/typescript/components/composites/Typeahead/useTypeahead/types";
+import { Box, TextArea, Button, Text, FlatList, Heading } from "native-base";
+import { Image } from "react-native";
+
 import React, { useContext, useEffect, useState } from "react";
 import { formatDate } from "../../utils/FormatDate";
 import AuthContext from "../../contexts/auth";
@@ -92,15 +83,20 @@ const Historico: React.FC = () => {
               {item.customerId === user.id ? (
                 <Box flexDirection="row" mt="2">
                   <Box mr="3" alignItems="center">
-                    <Avatar
-                      bg="green.500"
-                      source={{
-                        uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-                      }}
-                    >
-                      AJ
-                    </Avatar>
-                    <Text color="white">{item.customer.name}</Text>
+                    <Image
+                      source={
+                        user.picture === null
+                          ? require("../../assets/images/baixados.png")
+                          : {
+                              uri: `http://192.168.1.15:5000/files/${user.picture}`,
+                            }
+                      }
+                      style={{ width: 60, height: 60, borderRadius: 50 }}
+                    />
+
+                    <Text color="white" mt="1">
+                      {item.customer.name}
+                    </Text>
                   </Box>
 
                   <Box
@@ -137,14 +133,11 @@ const Historico: React.FC = () => {
                     </Text>
                   </Box>
                   <Box ml="3" alignItems="center">
-                    <Avatar
-                      bg="green.500"
-                      source={{
-                        uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-                      }}
-                    >
-                      AJ
-                    </Avatar>
+                    <Image
+                      source={require("../../assets/images/baixados.png")}
+                      style={{ width: 10, height: 10, borderRadius: 50 }}
+                    />
+
                     <Text color="white">{item.customer.name}</Text>
                   </Box>
                 </Box>

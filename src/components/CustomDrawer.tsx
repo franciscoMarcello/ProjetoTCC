@@ -19,17 +19,29 @@ const components: React.FC = (props) => {
         contentContainerStyle={{ backgroundColor: "#00000" }}
       >
         <Box alignItems="center">
-          <Image
-            source={{
-              uri: `http://192.168.1.2:5000/files/${user.picture}`,
-            }}
-            style={{
-              width: 150,
-              height: 150,
-              resizeMode: "cover",
-              borderRadius: 75,
-            }}
-          />
+          {user.picture === null ? (
+            <Image
+              source={require("../assets/images/baixados.png")}
+              style={{
+                width: 150,
+                height: 150,
+                resizeMode: "cover",
+                borderRadius: 75,
+              }}
+            />
+          ) : (
+            <Image
+              source={{
+                uri: `http://192.168.1.15:5000/files/${user.picture}`,
+              }}
+              style={{
+                width: 150,
+                height: 150,
+                resizeMode: "cover",
+                borderRadius: 75,
+              }}
+            />
+          )}
         </Box>
         <Heading fontSize="2xl" pl="3" pt="2" mb="8" color="white">
           {user.name}

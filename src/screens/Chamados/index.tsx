@@ -7,15 +7,14 @@ import {
   TextArea,
   Image,
   Heading,
-  Alert,
   StatusBar,
 } from "native-base";
+import { Alert } from "react-native";
 import { Input } from "../../components/input";
 import api from "../../service/auth";
 import { AntDesign } from "@expo/vector-icons";
 import AuthContext from "../../contexts/auth";
 import { useNavigation } from "@react-navigation/native";
-import { Alerta } from "../../components/Alerta";
 
 const Chamado: React.FC = () => {
   const { user } = useContext(AuthContext);
@@ -28,25 +27,31 @@ const Chamado: React.FC = () => {
   const navigation = useNavigation();
 
   async function AddChamado() {
+    if (!imageAvatar) {
+      Alert.alert("Algo deu errado", "A imagem e obrigatoria");
+    }
+    const data = new FormData();
+    data.append("title", title);
+    data.append("description", description);
+    data.append("image", {
+      name: `chamado ${user.id}`,
+      type: "image/jpg",
+      uri: imageAvatar,
+    });
+    data.append("category", cateegory);
+    data.append("customerId", user.id);
     try {
-      // const data = new FormData();
-      // data.append("title", title);
-      // data.append("description", description);
-      // data.append("image", imageAvatar);
-      // data.append("category", cateegory);
-      // data.append("customerId", user.id);
-      const response = await api.post("/chamado", {
-        title: title,
-        description: description,
-        category: cateegory,
-        customerId: user.id,
-      });
+      const response = await api.post("/chamado", data);
 
-      setDescription(""), setTitle(""), setCategory(""), setAvatarUrl("");
-
+      setDescription(""),
+        setTitle(""),
+        setCategory(""),
+        setAvatarUrl(""),
+        setImageAvatar(null);
+      Alert.alert("Sucesso", "Chamado criado com sucesso");
       navigation.goBack();
     } catch (err: any) {
-      setError(err.response.data.message);
+      Alert.alert("Algo deu errado", err.response.data.message);
     }
   }
 
@@ -105,6 +110,8 @@ const Chamado: React.FC = () => {
           color="gray.300"
           marginBottom="3"
           autoCompleteType="none"
+          placeholderTextColor="gray.500"
+          fontSize="17"
         />
         <Select
           marginBottom="3"
@@ -113,7 +120,9 @@ const Chamado: React.FC = () => {
           accessibilityLabel="Selecione a categoria"
           placeholder="Selecione a categoria"
           color="gray.300"
+          placeholderTextColor="gray.500"
           size="3"
+          fontSize="15"
           _selectedItem={{
             bg: "teal.600",
             size: 35,

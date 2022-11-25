@@ -27,20 +27,38 @@ const Home = () => {
 
   useEffect(() => {
     async function me() {
-      if (list) {
-        const response = await api.get("/customer/meusChamados", {
-          params: {
-            customerId: user.id,
-          },
-        });
-        setChamados(response.data);
+      if (user.tecnicId) {
+        if (list) {
+          const response = await api.get("/tecnic/chamados", {
+            params: {
+              customerId: user.id,
+            },
+          });
+          setChamados(response.data);
+        } else {
+          const response = await api.get("/chamados", {
+            params: {
+              customerId: user.id,
+            },
+          });
+          setChamados(response.data);
+        }
       } else {
-        const response = await api.get("/chamados", {
-          params: {
-            customerId: user.id,
-          },
-        });
-        setChamados(response.data);
+        if (list) {
+          const response = await api.get("/customer/meusChamados", {
+            params: {
+              customerId: user.id,
+            },
+          });
+          setChamados(response.data);
+        } else {
+          const response = await api.get("/chamados", {
+            params: {
+              customerId: user.id,
+            },
+          });
+          setChamados(response.data);
+        }
       }
     }
     me();
