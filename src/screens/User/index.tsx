@@ -121,7 +121,7 @@ const User: React.FC = () => {
           ) : (
             <Image
               source={{
-                uri: `http://192.168.1.15:5000/files/${picture}`,
+                uri: `http://192.168.1.18:5000/files/${picture}`,
               }}
               style={{
                 width: 150,

@@ -88,7 +88,7 @@ const Historico: React.FC = () => {
                         user.picture === null
                           ? require("../../assets/images/baixados.png")
                           : {
-                              uri: `http://192.168.1.15:5000/files/${user.picture}`,
+                              uri: `http://192.168.1.18:5000/files/${user.picture}`,
                             }
                       }
                       style={{ width: 60, height: 60, borderRadius: 50 }}
@@ -105,12 +105,13 @@ const Historico: React.FC = () => {
                     alignItems="flex-start"
                     width="auto"
                     height="auto"
-                    padding="2"
+                    p="2"
                   >
-                    <Text color="white" bold fontSize="xl">
+                    <Text color="white" fontSize="16">
                       {item.comentario}
                     </Text>
-                    <Text color="white" fontSize="12">
+
+                    <Text color="gray.300" fontSize="12">
                       {formatDate(item.created_at)}
                     </Text>
                   </Box>
@@ -125,17 +126,17 @@ const Historico: React.FC = () => {
                     height="auto"
                     padding="2"
                   >
-                    <Text color="white" bold fontSize="xl">
+                    <Text color="white" fontSize="16">
                       {item.comentario}
                     </Text>
-                    <Text color="white" bold fontSize="12">
+                    <Text color="gray.300" fontSize="12">
                       {formatDate(item.created_at)}
                     </Text>
                   </Box>
                   <Box ml="3" alignItems="center">
                     <Image
                       source={require("../../assets/images/baixados.png")}
-                      style={{ width: 10, height: 10, borderRadius: 50 }}
+                      style={{ width: 60, height: 60, borderRadius: 50 }}
                     />
 
                     <Text color="white">{item.customer.name}</Text>

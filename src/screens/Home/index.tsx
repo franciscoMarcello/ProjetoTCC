@@ -1,4 +1,5 @@
 import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { getPendingResultAsync } from "expo-image-picker";
 import {
   Box,
   Button,
@@ -9,6 +10,7 @@ import {
   VStack,
   Text,
   StatusBar,
+  Select,
 } from "native-base";
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/auth";
@@ -22,6 +24,7 @@ const Home = () => {
   const isFocused = useIsFocused();
   const { user } = useContext(AuthContext);
   const [list, setList] = useState(true);
+  const [status, setStatus] = useState("");
 
   const navigation = useNavigation();
 
@@ -34,14 +37,38 @@ const Home = () => {
               customerId: user.id,
             },
           });
-          setChamados(response.data);
+          if (status === "") {
+            setChamados(response.data);
+          } else {
+            setChamados(
+              response.data.filter((item) => {
+                if (item.status === status) {
+                  return true;
+                } else {
+                  return false;
+                }
+              })
+            );
+          }
         } else {
           const response = await api.get("/chamados", {
             params: {
               customerId: user.id,
             },
           });
-          setChamados(response.data);
+          if (status === "") {
+            setChamados(response.data);
+          } else {
+            setChamados(
+              response.data.filter((item) => {
+                if (item.status === status) {
+                  return true;
+                } else {
+                  return false;
+                }
+              })
+            );
+          }
         }
       } else {
         if (list) {
@@ -50,19 +77,44 @@ const Home = () => {
               customerId: user.id,
             },
           });
-          setChamados(response.data);
+
+          if (status === "") {
+            setChamados(response.data);
+          } else {
+            setChamados(
+              response.data.filter((item) => {
+                if (item.status === status) {
+                  return true;
+                } else {
+                  return false;
+                }
+              })
+            );
+          }
         } else {
           const response = await api.get("/chamados", {
             params: {
               customerId: user.id,
             },
           });
-          setChamados(response.data);
+          if (status === "") {
+            setChamados(response.data);
+          } else {
+            setChamados(
+              response.data.filter((item) => {
+                if (item.status === status) {
+                  return true;
+                } else {
+                  return false;
+                }
+              })
+            );
+          }
         }
       }
     }
     me();
-  }, [isFocused, list]);
+  }, [isFocused, list, status]);
   function me() {
     setList(true);
   }
@@ -98,6 +150,34 @@ const Home = () => {
           Chamados
         </Heading>
       )}
+      <Box w="auto" alignItems="flex-end">
+        <Select
+          marginBottom="3"
+          selectedValue={status}
+          minWidth="230"
+          accessibilityLabel="Selecione a categoria"
+          placeholder="Selecione status"
+          color="gray.300"
+          placeholderTextColor="gray.500"
+          fontSize="14"
+          mr={1}
+          _selectedItem={{
+            bg: "teal.600",
+            width: "100%",
+            color: "white",
+          }}
+          mt={1}
+          onValueChange={(itemValue) => setStatus(itemValue)}
+        >
+          <Select.Item label="Aberto" value="Aberto" />
+          <Select.Item label="Em atendimento" value="Em atendimento" />
+          <Select.Item
+            label="Pendente de validação"
+            value="Pendente de validação"
+          />
+          <Select.Item label="Solucionado" value="Solucionado" />
+        </Select>
+      </Box>
 
       {Chamados.length ? (
         <FlatList

@@ -32,7 +32,7 @@ const components: React.FC = (props) => {
           ) : (
             <Image
               source={{
-                uri: `http://192.168.1.15:5000/files/${user.picture}`,
+                uri: `http://192.168.1.18:5000/files/${user.picture}`,
               }}
               style={{
                 width: 150,

@@ -146,7 +146,7 @@ const Details: React.FC = () => {
             <Box alignItems="center">
               <Image
                 source={{
-                  uri: `http://192.168.1.15:5000/files/${item.image}`,
+                  uri: `http://192.168.1.18:5000/files/${item.image}`,
                 }}
                 style={{
                   width: 350,
